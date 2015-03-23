@@ -1,5 +1,5 @@
 #include "SettingsScreen.h"
-
+#include "MainMenuScreen.h"
 
 SettingsScreen::SettingsScreen(Managers* managerRef) :Screen(managerRef)
 {
@@ -19,8 +19,12 @@ void SettingsScreen::Draw()
 
 void SettingsScreen::Update()
 {
-	if (managers->GetInputManager()->GetEscape())
+	if (managers->GetInputManager()->GetQuit())
 	{
 		mLeave = true;
+	}
+	else if (managers->GetInputManager()->GetEscape())
+	{
+		nextScreen = new MainMenuScreen(managers);
 	}
 }

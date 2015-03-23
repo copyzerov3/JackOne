@@ -13,8 +13,9 @@ public:
 	bool GetSelect(){ return SELECT; }
 	bool GetEscape(){ return ESC; }
 	bool GetAttack(){ return ATTACK; }
+	bool GetQuit(){ return QUIT; }
 private:
-	bool UP, DOWN, LEFT, RIGHT, SELECT,ESC,ATTACK;
+	bool UP, DOWN, LEFT, RIGHT, SELECT,ESC,ATTACK,QUIT;
 	int mstickX, mstickY;
 	int DEAD_ZONE;
 	SDL_Joystick* controller;

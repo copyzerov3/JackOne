@@ -77,7 +77,7 @@ void MainMenuScreen::Update()
 			mLeave = true;
 		}
 	}
-	else if (managers->GetInputManager()->GetEscape())
+	else if (managers->GetInputManager()->GetEscape() || managers->GetInputManager()->GetQuit())
 	{
 		mLeave = true;
 	}

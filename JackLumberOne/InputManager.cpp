@@ -3,7 +3,7 @@
 
 InputManager::InputManager()
 {
-	UP = DOWN = LEFT = RIGHT = SELECT = ESC = false;
+	UP = DOWN = LEFT = RIGHT = SELECT = ESC = QUIT = false;
 	DEAD_ZONE = 8000;
 	controller = NULL;
 	num = -1;
@@ -51,7 +51,7 @@ void InputManager::Process()
 	{
 		if (e.type == SDL_QUIT)
 		{
-			ESC = true;
+			QUIT = true;
 		}
 		else if (e.type == SDL_JOYAXISMOTION)
 		{
