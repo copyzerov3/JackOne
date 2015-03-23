@@ -15,16 +15,25 @@ MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 
 MainMenuScreen::~MainMenuScreen()
 {
+	m_exit.Free();
+	m_play.Free();
+	m_settings.Free();
+	m_title.Free();
+
 }
 
 void MainMenuScreen::Draw()
 {
+	
 	SDL_Renderer* g = managers->GetGraphicsManager()->GetRenderer();
+
+	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
+	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 	mBackground.Render(g, 0, 0);
-	m_exit.Render(g, (1920 - m_exit.GetWidth()) / 2, 1080 - 400);
-	m_settings.Render(g, (1920 - m_settings.GetWidth()) / 2, 1080 - 600);
-	m_play.Render(g, (1920 - m_play.GetWidth()) / 2, 1080 - 800);
-	m_title.Render(g, (1920 - m_title.GetWidth()) / 2, 100);
+	m_play.Render(g, (WIDTH - m_play.GetWidth()) / 2, 270);
+	m_settings.Render(g, (WIDTH - m_settings.GetWidth()) / 2,  320);
+	m_exit.Render(g, (WIDTH - m_exit.GetWidth()) / 2, 370);
+	m_title.Render(g, (WIDTH - m_title.GetWidth()) / 2, 0);
 	mSelector.Render(g, 200, selectorY);
 }
 

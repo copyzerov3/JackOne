@@ -22,6 +22,15 @@ public:
 	TTF_Font* GetFont(){ return m_font; }
 	SDL_Renderer* GetRenderer(){ return m_renderer; }
 
+	int GetScreenHeight()
+	{
+		return SCREEN_HEIGHT;
+	}
+	int GetScreenWidth()
+	{
+		return SCREEN_WIDTH;
+	}
+
 private:
 	void Remake();
 
