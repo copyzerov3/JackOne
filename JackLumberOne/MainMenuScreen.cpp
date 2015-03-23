@@ -1,5 +1,6 @@
 #include "MainMenuScreen.h"
 #include "SettingsScreen.h"
+#include "DifficultySelectScreen.h"
 
 MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 {
@@ -67,7 +68,7 @@ void MainMenuScreen::Update()
 	{
 		if (selectorY == 260)
 		{
-			//Go to level select;
+			nextScreen = new DifficultySelectScreen(managers);
 		}
 		else if (selectorY == 310)
 		{

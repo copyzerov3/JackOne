@@ -10,6 +10,14 @@ public:
 	void Draw();
 
 private:
-	Texture mBackground;
+	Texture mBackground,
+		m_title,
+		m_descriptionEasy,
+		m_descriptionMed,
+		m_descriptionHard,
+		m_selector,
+		m_easy,
+		m_med,
+		m_hard;
 };
 
