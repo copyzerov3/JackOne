@@ -10,6 +10,7 @@ MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 	MakeTTFTexture("Settings", m_settings);
 	MakeTTFTexture("Title", m_title);
 	selectorY = 260;
+	timer.start();
 }
 
 
