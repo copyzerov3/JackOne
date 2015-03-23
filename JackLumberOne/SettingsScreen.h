@@ -11,5 +11,6 @@ public:
 	void Draw();
 private:
 	Texture m_background;
+	Texture m_title;
 };
 
