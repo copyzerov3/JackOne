@@ -2,6 +2,7 @@
 #include "InputManager.h"
 #include "GraphicsManager.h"
 #include "ResourceManager.h"
+#include "GlobalsManager.h"
 class Managers
 {
 public:
@@ -10,9 +11,12 @@ public:
 		inputManager = new InputManager();
 		graphicsManager = new GraphicsManager();
 		resourceManager = new ResourceManager(graphicsManager);
+		globalManager = new GlobalsManager();
 	}
 	~Managers()
 	{
+		delete globalManager;
+		globalManager = NULL;
 		delete resourceManager;
 		resourceManager = NULL;
 		delete graphicsManager;
@@ -45,9 +49,14 @@ public:
 	{
 		return resourceManager;
 	}
+	GlobalsManager* GetGlobalsManager()
+	{
+		return globalManager;
+	}
 private:
 	InputManager* inputManager;
 	GraphicsManager* graphicsManager;
 	ResourceManager* resourceManager;
+	GlobalsManager* globalManager;
 };
 

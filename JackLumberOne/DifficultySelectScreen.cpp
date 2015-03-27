@@ -1,6 +1,6 @@
 #include "DifficultySelectScreen.h"
 #include "MainMenuScreen.h"
-
+#include "LevelSelectScreen.h"
 DifficultySelectScreen::DifficultySelectScreen(Managers* managerRef) :Screen(managerRef)
 {
 	managerRef->GetResourceManager()->GetTexture("background", &mBackground);
@@ -88,18 +88,20 @@ void DifficultySelectScreen::Update()
 	}
 	else if (managers->GetInputManager()->GetSelect() || managers->GetInputManager()->GetAttack())
 	{
+		GlobalsManager* g = managers->GetGlobalsManager();
 		if (m_selectorY == 90)
 		{
-			
+			g->SetDifficulty(g->EASY);
 		}
 		else if (m_selectorY == 140)
 		{
-			
+			g->SetDifficulty(g->MEDIUM);
 		}
 		else if (m_selectorY == 190)
 		{
-			
+			g->SetDifficulty(g->HARD);
 		}
+		nextScreen = new LevelSelectScreen(managers);
 	}
 	else if (i->GetQuit())
 	{
