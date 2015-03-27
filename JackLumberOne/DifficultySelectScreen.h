@@ -1,5 +1,6 @@
 #pragma once
 #include "Screen.h"
+#include "Timer.h"
 class DifficultySelectScreen:public Screen
 {
 public:
@@ -19,5 +20,8 @@ private:
 		m_easy,
 		m_med,
 		m_hard;
+
+	int m_selectorY;
+	Timer timer;
 };
 
