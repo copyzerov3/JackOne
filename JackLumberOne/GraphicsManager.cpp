@@ -20,16 +20,11 @@ GraphicsManager::~GraphicsManager()
 }
 void GraphicsManager::endDraw()
 {
-	/*SDL_SetRenderTarget(m_renderer, NULL);
-	//Show rendered to texture
-	SDL_Rect rect = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-	m_screenTexture.RenderAsBuffer(m_renderer, &rect);*/
 	if (m_renderer != NULL)
 		SDL_RenderPresent(m_renderer);
 }
 void GraphicsManager::startDraw()
 {
-	//m_screenTexture.SetAsRenderTarget(m_renderer);
 	if (m_renderer != NULL)
 		SDL_RenderClear(m_renderer);
 }

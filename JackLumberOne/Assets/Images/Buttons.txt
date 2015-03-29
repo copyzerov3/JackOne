@@ -1,0 +1,12 @@
+BackButtonPressed
+BackButtonReg
+NoButtonPressed
+NoButtonReg
+PlayButtonPressed
+PlayButtonReg
+SettingsButtonPressed
+SettingsButtonReg
+ShopButtonPressed
+ShopButtonReg
+YesButtonPressed
+YesButtonRegular
