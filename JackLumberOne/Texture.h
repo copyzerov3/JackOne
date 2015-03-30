@@ -32,15 +32,10 @@ public:
 	void RenderAsBuffer(SDL_Renderer* renderer, SDL_Rect* screen);
 	int GetWidth();
 	int GetHeight();
-	void SetDeleteAttempts(int attempts = 0)
-	{
-		m_deleteAttempts = attempts;
-	}
 private:
 	SDL_Texture* m_texture;
 
 	int m_width;
 	int m_height;
-	int m_deleteAttempts;
 };
 

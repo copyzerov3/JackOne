@@ -4,11 +4,12 @@
 
 MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 {
-	managerRef->GetResourceManager()->GetTexture("background", &mBackground);
-	managerRef->GetResourceManager()->GetTexture("selector", &mSelector);
-	MakeTTFTexture("Exit", m_exit);
-	MakeTTFTexture("Play", m_play);
-	MakeTTFTexture("Settings", m_settings);
+	mBackground = managerRef->GetResourceManager()->GetTexture("Background", mBackground);
+	mSelector = managerRef->GetResourceManager()->GetTexture("menuSelector", mSelector);
+	m_exit = new Button("ExitButton", managerRef->GetResourceManager());
+	m_play = new Button("PlayButton", managerRef->GetResourceManager());
+	m_settings = new Button("SettingsButton", managerRef->GetResourceManager());
+	m_title = new Texture();
 	MakeTTFTexture("Title", m_title);
 	selectorY = 260;
 	timer.start();
@@ -17,10 +18,10 @@ MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 
 MainMenuScreen::~MainMenuScreen()
 {
-	m_exit.Free();
-	m_play.Free();
-	m_settings.Free();
-	m_title.Free();
+	delete m_exit;
+	delete m_play;
+	delete m_settings;
+	delete m_title;
 
 }
 
@@ -31,12 +32,12 @@ void MainMenuScreen::Draw()
 
 	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
 	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
-	mBackground.Render(g, 0, 0);
-	m_play.Render(g, (WIDTH - m_play.GetWidth()) / 2, 270);
-	m_settings.Render(g, (WIDTH - m_settings.GetWidth()) / 2,  320);
-	m_exit.Render(g, (WIDTH - m_exit.GetWidth()) / 2, 370);
-	m_title.Render(g, (WIDTH - m_title.GetWidth()) / 2, 0);
-	mSelector.Render(g, 200, selectorY);
+	mBackground->Render(g, 0, 0);
+	m_play->Render(g, (WIDTH - m_play->GetWidth()) / 2, 270);
+	m_settings->Render(g, (WIDTH - m_settings->GetWidth()) / 2,  320);
+	m_exit->Render(g, (WIDTH - m_exit->GetWidth()) / 2, 370);
+	m_title->Render(g, (WIDTH - m_title->GetWidth()) / 2, 0);
+	mSelector->Render(g, 200, selectorY);
 }
 
 void MainMenuScreen::Update()
@@ -83,4 +84,30 @@ void MainMenuScreen::Update()
 	{
 		mLeave = true;
 	}
+	if (selectorY == 260)
+	{
+		m_play->SetIsSelected(true);
+	}
+	else
+	{
+		m_play->SetIsSelected(false);
+	}
+	if (selectorY == 310)
+	{
+		m_settings->SetIsSelected(true);
+	}
+	else
+	{
+		m_settings->SetIsSelected(false);
+	}
+	if (selectorY == 360)
+	{
+		m_exit->SetIsSelected(true);
+	}
+	else
+	{
+		m_exit->SetIsSelected(false);
+	}
+	
+	
 }

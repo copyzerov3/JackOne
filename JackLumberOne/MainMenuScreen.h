@@ -1,6 +1,7 @@
 #pragma once
 #include "Screen.h"
 #include "Timer.h"
+#include "Button.h"
 class MainMenuScreen :
 	public Screen
 {
@@ -11,12 +12,12 @@ public:
 	void Update();
 	void Draw();
 private:
-	Texture mBackground;
-	Texture mSelector;
-	Texture m_title;
-	Texture m_play;
-	Texture m_settings;
-	Texture m_exit;
+	Texture* mBackground;
+	Texture* mSelector;
+	Texture* m_title;
+	Button* m_play;
+	Button* m_settings;
+	Button* m_exit;
 	int selectorY;
 	Timer timer;
 };

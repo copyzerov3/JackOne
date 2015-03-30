@@ -3,14 +3,14 @@
 
 LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
 {
-	managerRef->GetResourceManager()->GetTexture("background", &m_background);
+	managerRef->GetResourceManager()->GetTexture("background", m_background);
 	MakeTTFTexture("LevelSelectScreen", m_title);
 }
 
 
 LevelSelectScreen::~LevelSelectScreen()
 {
-	m_title.Free();
+	delete m_title;
 }
 
 void LevelSelectScreen::Draw()
@@ -19,8 +19,8 @@ void LevelSelectScreen::Draw()
 	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
 	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 
-	m_background.Render(r, 0, 0);
-	m_title.Render(r, (WIDTH - m_title.GetWidth()) / 2, 0);
+	m_background->Render(r, 0, 0);
+	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
 }
 
 void LevelSelectScreen::Update()

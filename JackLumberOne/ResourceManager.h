@@ -8,10 +8,10 @@ class ResourceManager
 public:
 	ResourceManager(GraphicsManager* graphicsRef);
 	~ResourceManager();
-	bool GetTexture(std::string name,Texture* texture);
+	Texture* GetTexture(std::string name,Texture* texture);
 	bool Init();
 private:
-	HashTable<Texture> resources;
+	HashTable<Texture*> resources;
 	GraphicsManager* graphicsRef;
 };
 

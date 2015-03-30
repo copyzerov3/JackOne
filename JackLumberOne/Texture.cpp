@@ -6,15 +6,12 @@ Texture::Texture()
 	m_texture = NULL;
 	m_width = 0;
 	m_height = 0;
-	m_deleteAttempts = 1;
 }
 
 
 Texture::~Texture()
 {
-	if (m_deleteAttempts == 0)
-		Free();
-	m_deleteAttempts++;
+	Free();
 }
 
 bool Texture::CreateBlank(SDL_Renderer* renderer,int width, int height, SDL_TextureAccess access)

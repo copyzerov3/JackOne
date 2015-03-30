@@ -3,10 +3,10 @@
 
 Button::Button(std::string name,ResourceManager* manager,bool needPressed)
 {
-	manager->GetTexture(name + "Reg", &m_regular);
+	m_regular = manager->GetTexture(name + "Reg", m_regular);
 	if (needPressed)
 	{
-		manager->GetTexture(name + "Pressed", &m_pressed);
+		m_pressed = manager->GetTexture(name + "Pressed", m_pressed);
 	}
 	m_selected = false;
 }
@@ -14,9 +14,13 @@ Button::Button(std::string name,ResourceManager* manager,bool needPressed)
 
 Button::~Button()
 {
+	
 }
 
-void Button::Render(int x, int y, SDL_Renderer* renderer)
+void Button::Render( SDL_Renderer* renderer,int x, int y)
 {
-
+	if (m_selected)
+		m_pressed->Render(renderer, x, y);
+	else
+		m_regular->Render(renderer, x, y);
 }

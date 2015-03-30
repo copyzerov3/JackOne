@@ -10,6 +10,6 @@ public:
 	void Draw();
 
 private:
-	Texture m_background,
-		m_title;
+	Texture *m_background,
+		*m_title;
 };

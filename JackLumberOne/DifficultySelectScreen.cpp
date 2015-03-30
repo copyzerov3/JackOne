@@ -3,8 +3,8 @@
 #include "LevelSelectScreen.h"
 DifficultySelectScreen::DifficultySelectScreen(Managers* managerRef) :Screen(managerRef)
 {
-	managerRef->GetResourceManager()->GetTexture("background", &mBackground);
-	managerRef->GetResourceManager()->GetTexture("selector", &m_selector);
+	managerRef->GetResourceManager()->GetTexture("background", mBackground);
+	managerRef->GetResourceManager()->GetTexture("selector", m_selector);
 	MakeTTFTexture("Difficulty Select",m_title);
 	MakeTTFTexture("Easy", m_easy);
 	MakeTTFTexture("Medium", m_med);
@@ -19,13 +19,13 @@ DifficultySelectScreen::DifficultySelectScreen(Managers* managerRef) :Screen(man
 
 DifficultySelectScreen::~DifficultySelectScreen()
 {
-	m_title.Free();
-	m_easy.Free();
-	m_med.Free();
-	m_hard.Free();
-	m_descriptionEasy.Free();
-	m_descriptionHard.Free();
-	m_descriptionMed.Free();
+	delete m_title;
+	delete m_easy;
+	delete m_med;
+	delete m_hard;
+	delete m_descriptionEasy;
+	delete m_descriptionHard;
+	delete m_descriptionMed;
 	m_selectorY = 0;
 }
 
@@ -35,25 +35,25 @@ void DifficultySelectScreen::Draw()
 	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
 	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 
-	mBackground.Render(r, 0, 0);
-	m_title.Render(r, (WIDTH - m_title.GetWidth()) / 2, 0);
-	m_easy.Render(r, (WIDTH-m_easy.GetWidth()) / 2, 100);
-	m_med.Render(r, (WIDTH-m_med.GetWidth()) / 2, 150);
-	m_hard.Render(r, (WIDTH - m_hard.GetWidth()) / 2, 200);
+	mBackground->Render(r, 0, 0);
+	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
+	m_easy->Render(r, (WIDTH - m_easy->GetWidth()) / 2, 100);
+	m_med->Render(r, (WIDTH - m_med->GetWidth()) / 2, 150);
+	m_hard->Render(r, (WIDTH - m_hard->GetWidth()) / 2, 200);
 
-	m_selector.Render(r, 200, m_selectorY);
+	m_selector->Render(r, 200, m_selectorY);
 
 	if (m_selectorY == 90)
 	{
-		m_descriptionEasy.Render(r, (WIDTH - m_descriptionEasy.GetWidth()) / 2, HEIGHT - m_descriptionEasy.GetHeight());
+		m_descriptionEasy->Render(r, (WIDTH - m_descriptionEasy->GetWidth()) / 2, HEIGHT - m_descriptionEasy->GetHeight());
 	}
 	else if (m_selectorY == 140)
 	{
-		m_descriptionMed.Render(r, (WIDTH - m_descriptionMed.GetWidth()) / 2, HEIGHT - m_descriptionMed.GetHeight());
+		m_descriptionMed->Render(r, (WIDTH - m_descriptionMed->GetWidth()) / 2, HEIGHT - m_descriptionMed->GetHeight());
 	}
 	else if (m_selectorY == 190)
 	{
-		m_descriptionHard.Render(r, (WIDTH - m_descriptionHard.GetWidth()) / 2, HEIGHT - m_descriptionHard.GetHeight());
+		m_descriptionHard->Render(r, (WIDTH - m_descriptionHard->GetWidth()) / 2, HEIGHT - m_descriptionHard->GetHeight());
 	}
 
 }
