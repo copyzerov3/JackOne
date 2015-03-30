@@ -30,10 +30,14 @@ public:
 	{
 		return SCREEN_WIDTH;
 	}
+	float GetScale()
+	{
+		return SCALE;
+	}
 
 private:
 	void Remake();
-
+	void SetScale();
 	SDL_Window* m_window;
 	SDL_Renderer* m_renderer;
 	TTF_Font* m_font;
@@ -42,7 +46,7 @@ private:
 	//Screen dimension constants
 	int SCREEN_WIDTH;
 	int SCREEN_HEIGHT;
-
+	float SCALE;
 	bool m_fullScreen;
 };
 

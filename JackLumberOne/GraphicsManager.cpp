@@ -3,8 +3,9 @@
 
 GraphicsManager::GraphicsManager()
 {
-	SCREEN_WIDTH = 800;
-	SCREEN_HEIGHT = 600;
+	SCREEN_WIDTH = 960;
+	SCREEN_HEIGHT = 540;
+	SCALE = 1.0f;
 	m_fullScreen = false;
 }
 
@@ -27,6 +28,10 @@ void GraphicsManager::startDraw()
 {
 	if (m_renderer != NULL)
 		SDL_RenderClear(m_renderer);
+}
+void GraphicsManager::SetScale()
+{
+
 }
 void GraphicsManager::Resize(int width,int height)
 {

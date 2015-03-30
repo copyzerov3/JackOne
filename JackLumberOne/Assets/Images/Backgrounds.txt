@@ -1,1 +1,6 @@
 Background
+CityAreaBackground
+DesertAreaBackground
+ForestAreaBackground
+SeaAreaBackground
+SpaceAreaBackground
