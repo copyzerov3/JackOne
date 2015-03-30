@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-ResourceManager::ResourceManager(GraphicsManager* graphicsRef) :resources(100)
+ResourceManager::ResourceManager(GraphicsManager* graphicsRef) :resources(300)
 {
 	this->graphicsRef = graphicsRef;
 }
@@ -37,8 +37,8 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
+	//	printf("%s", line);
 		line = "Assets/Images/Backgrounds/" + scalePath + line + "@" + temp + "x.png";
-		printf("%s", line);
 		image = new Texture();
 		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
 		{
@@ -52,8 +52,8 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
+		//printf("%s\n", line);
 		line = "Assets/Images/Sprites/Bosses/" + scalePath + line + "@" + temp + "x.png";
-		printf("%s", line);
 		image = new Texture();
 		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
 		{
@@ -63,12 +63,15 @@ bool ResourceManager::Init()
 	}
 	if (inFile.is_open())
 		inFile.close();
+
+
+
 	inFile.open("Assets/Images/Buttons.txt");
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
+	//	printf("file name : %s string Hash : %d\n", line.c_str(),stringHash);
 		line = "Assets/Images/Buttons/" + scalePath + line + "@" + temp + "x.png";
-		printf("%s", line);
 		image = new Texture();
 		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
 		{
@@ -78,12 +81,14 @@ bool ResourceManager::Init()
 	}
 	if (inFile.is_open())
 		inFile.close();
+
+
 	inFile.open("Assets/Images/Enemies.txt");
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
 		line = "Assets/Images/Sprites/Enemies/" + scalePath + line + "@" + temp + "x.png";
-		printf("%s", line);
+		//printf("%s", line);
 		image = new Texture();
 		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
 		{
@@ -98,7 +103,7 @@ bool ResourceManager::Init()
 	{
 		stringHash = resources.HashFunction(line);
 		line = "Assets/Images/GUI/" + scalePath + line + "@" + temp + "x.png";
-		printf("%s", line);
+		//printf("%s", line);
 		image = new Texture();
 		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
 		{
@@ -113,7 +118,7 @@ bool ResourceManager::Init()
 	{
 		stringHash = resources.HashFunction(line);
 		line = "Assets/Images/Sprites/Player/" + scalePath + line + "@" + temp + "x.png";
-		printf("%s", line);
+		//printf("%s", line);
 		image = new Texture();
 		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
 		{
@@ -128,7 +133,7 @@ bool ResourceManager::Init()
 	{
 		stringHash = resources.HashFunction(line);
 		line = "Assets/Images/Projectiles/" + scalePath + line + "@" + temp + "x.png";
-		printf("%s", line);
+		//printf("%s", line);
 		image = new Texture();
 		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
 		{
@@ -144,6 +149,7 @@ bool ResourceManager::Init()
 Texture* ResourceManager::GetTexture(std::string title,Texture* container)
 {
 	int stringHash = resources.HashFunction(title);
+	//printf("title  = %s String Hash = %d\n", title.c_str(), stringHash);
 	resources.Find(stringHash, &container);
 	return container;
 }
