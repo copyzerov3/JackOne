@@ -13,6 +13,7 @@ MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 	MakeTTFTexture("Title", m_title);
 	selectorY = 260;
 	timer.start();
+	m_play->SetIsSelected(true);
 }
 
 
@@ -33,10 +34,13 @@ void MainMenuScreen::Draw()
 	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
 	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 	mBackground->Render(g, 0, 0);
-	m_play->Render(g, (WIDTH - m_play->GetWidth()) / 2, 270);
-	m_settings->Render(g, (WIDTH - m_settings->GetWidth()) / 2,  320);
-	m_exit->Render(g, (WIDTH - m_exit->GetWidth()) / 2, 370);
+	int mid = (HEIGHT + m_title->GetHeight() - m_settings->GetHeight()) / 2;
+	m_play->Render(g, (WIDTH - m_play->GetWidth()) / 2, (mid)/2);
+	m_settings->Render(g, (WIDTH - m_settings->GetWidth()) / 2, mid);
+	m_exit->Render(g, (WIDTH - m_exit->GetWidth()) / 2, mid +(mid/2));
+	
 	m_title->Render(g, (WIDTH - m_title->GetWidth()) / 2, 0);
+	
 	mSelector->Render(g, 200, selectorY);
 }
 
