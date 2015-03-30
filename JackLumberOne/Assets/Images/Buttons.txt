@@ -1,5 +1,7 @@
 BackButtonPressed
 BackButtonReg
+ExitButtonPressed
+ExitButtonReg
 NoButtonPressed
 NoButtonReg
 PlayButtonPressed
