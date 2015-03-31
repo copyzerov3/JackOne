@@ -10,7 +10,7 @@ public:
 	~Game();
 	bool Init();
 	bool Leave();
-	void Update();
+	bool Update();
 
 private:
 	Managers* manager;

@@ -38,7 +38,7 @@ bool Game::Leave()
 {
 	return m_screen->GetLeave();
 }
-void Game::Update()
+bool Game::Update()
 {
 	//for calculating frame rate
 	capTimer.start();
@@ -60,7 +60,11 @@ void Game::Update()
 		//Set temp to NULL because I am paranoid.
 		temp = NULL;
 		//Init the new screen
-		m_screen->Init();
+		if (!m_screen->Init())
+		{
+			printf("Could not init new screen!");
+			return false;
+		}
 	}
 	
 	//Clear the screen
@@ -77,5 +81,7 @@ void Game::Update()
 	{
 		SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
 	}
+
+	return true;
 }
 

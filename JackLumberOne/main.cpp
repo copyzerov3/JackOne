@@ -7,7 +7,12 @@ int main(int argc, char* args[])
 	{
 		do
 		{
-			game->Update();
+			if (!game->Update())
+			{
+				delete game;
+				return 1;
+			}
+				
 		} while (!game->Leave());
 	}
 	delete game;

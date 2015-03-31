@@ -14,9 +14,20 @@ bool MainMenuScreen::Init()
 	mSelector = managers->GetResourceManager()->GetTexture("menuSelector", mSelector);
 	if (mSelector == nullptr)
 		return false;
-	m_exit = new Button("ExitButton", managers->GetResourceManager());
-	m_play = new Button("PlayButton", managers->GetResourceManager());
-	m_settings = new Button("SettingsButton", managers->GetResourceManager());
+
+	m_exit = new Button();
+	if (!m_exit->Init("ExitButton", managers->GetResourceManager()))
+		return false;
+
+	m_play = new Button();
+	if (!m_play->Init("PlayButton", managers->GetResourceManager()))
+		return false;
+
+	m_settings = new Button();
+	if (!m_settings->Init("SettingsButton", managers->GetResourceManager()))
+		return false;
+
+
 	m_title = new Texture();
 	MakeTTFTexture("Title", m_title);
 	choice = 1;

@@ -24,9 +24,15 @@ bool DifficultySelectScreen::Init()
 	MakeTTFTexture("I enjoy a challenge", m_descriptionMed);
 	MakeTTFTexture("I am a sado masochist", m_descriptionHard);
 
-	m_easy = new Button("EasyButton", managers->GetResourceManager());
-	m_med = new Button("MediumButton", managers->GetResourceManager());
-	m_hard = new Button("HardButton", managers->GetResourceManager());
+	m_easy = new Button();
+	if (!m_easy->Init("EasyButton", managers->GetResourceManager()))
+		return false;
+	m_med = new Button();
+	if (!m_med->Init("MediumButton", managers->GetResourceManager()))
+		return false;
+	m_hard = new Button();
+	if (!m_hard->Init("HardButton", managers->GetResourceManager()))
+		return false;
 
 	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
 	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
