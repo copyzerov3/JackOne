@@ -19,7 +19,7 @@ private:
 	Button* m_play;
 	Button* m_settings;
 	Button* m_exit;
-	int selectorY;
+	int choice;
 	Timer timer;
 };
 

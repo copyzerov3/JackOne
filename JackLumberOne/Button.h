@@ -6,7 +6,8 @@ class Button
 public:
 	Button(std::string name, ResourceManager* manager, bool needPressed = true);
 	~Button();
-	void Render(SDL_Renderer* renderer,int x,int y);
+	void Render(SDL_Renderer* renderer);
+	void Render(SDL_Renderer*, int x, int y);
 	int GetWidth()
 	{
 		return m_regular->GetWidth();

@@ -24,3 +24,7 @@ void Button::Render( SDL_Renderer* renderer,int x, int y)
 	else
 		m_regular->Render(renderer, x, y);
 }
+void Button::Render(SDL_Renderer* renderer)
+{
+	Render(renderer, m_x, m_y);
+}

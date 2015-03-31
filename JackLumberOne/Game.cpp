@@ -46,15 +46,20 @@ void Game::Update()
 	manager->GetInputManager()->Process();
 	//Update the screen
 	m_screen->Update();
-
+	//if there is supposed to be a screen transition
 	Screen* temp = m_screen->GetNextScreen();
-	
+	//if there is a screem
 	if (temp != nullptr)
 	{
+		//delete the old screen
 		delete m_screen;
+		//Set it to NULL for good measure.
 		m_screen = NULL;
+		//Set Our screen pointer to the new screen.
 		m_screen = temp;
+		//Set temp to NULL because I am paranoid.
 		temp = NULL;
+		//Init the new screen
 		m_screen->Init();
 	}
 	

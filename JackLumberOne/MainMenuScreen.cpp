@@ -15,9 +15,18 @@ void MainMenuScreen::Init()
 	m_settings = new Button("SettingsButton", managers->GetResourceManager());
 	m_title = new Texture();
 	MakeTTFTexture("Title", m_title);
-	selectorY = 260;
+	choice = 1;
 	timer.start();
 	m_play->SetIsSelected(true);
+
+	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
+	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
+	int mid = (HEIGHT + m_title->GetHeight() - m_settings->GetHeight()) / 2;
+
+	m_play->SetPosition((WIDTH - m_play->GetWidth()) / 2, (mid) / 2);
+	m_settings->SetPosition((WIDTH - m_settings->GetWidth()) / 2, mid);
+	m_exit->SetPosition((WIDTH - m_exit->GetWidth()) / 2, mid + (mid / 2));
+
 }
 
 MainMenuScreen::~MainMenuScreen()
@@ -37,14 +46,29 @@ void MainMenuScreen::Draw()
 	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
 	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 	mBackground->Render(g, 0, 0);
-	int mid = (HEIGHT + m_title->GetHeight() - m_settings->GetHeight()) / 2;
-	m_play->Render(g, (WIDTH - m_play->GetWidth()) / 2, (mid)/2);
-	m_settings->Render(g, (WIDTH - m_settings->GetWidth()) / 2, mid);
-	m_exit->Render(g, (WIDTH - m_exit->GetWidth()) / 2, mid +(mid/2));
+	m_play->Render(g);
+	m_settings->Render(g);
+	m_exit->Render(g);
 	
 	m_title->Render(g, (WIDTH - m_title->GetWidth()) / 2, 0);
+	int pos = 0,posX = 0;
 	
-	mSelector->Render(g, 200, selectorY);
+	switch (choice)
+	{
+	case 1:
+		pos = m_play->GetY() + ((unsigned int(m_play->GetHeight() - mSelector->GetHeight())) / 2);
+		posX = m_play->GetX() - mSelector->GetWidth();
+		break;
+	case 2:
+		pos = m_settings->GetY() + ((unsigned int(m_settings->GetHeight() - mSelector->GetHeight())) / 2);
+		posX = m_settings->GetX() - mSelector->GetWidth();
+		break;
+	case 3:
+		pos = m_exit->GetY() + ((unsigned int(m_exit->GetHeight() - mSelector->GetHeight())) / 2);
+		posX = m_exit->GetX() - mSelector->GetWidth();
+		break;
+	}
+	mSelector->Render(g,posX , pos);
 }
 
 void MainMenuScreen::Update()
@@ -57,32 +81,32 @@ void MainMenuScreen::Update()
 	if (managers->GetInputManager()->GetUp())
 	{
 		timer.start();
-		selectorY -= 50;
-		if (selectorY < 240)
+		choice--;
+		if (choice == 0)
 		{
-			selectorY += 150;
+			choice = 3;
 		}
 	}
 	else if (managers->GetInputManager()->GetDown())
 	{
 		timer.start();
-		selectorY += 50;
-		if (selectorY > 400)
+		choice++;
+		if (choice == 4)
 		{
-			selectorY -= 150;
+			choice = 1;
 		}
 	}
 	else if (managers->GetInputManager()->GetSelect() || managers->GetInputManager()->GetAttack())
 	{
-		if (selectorY == 260)
+		if (choice ==1)
 		{
 			nextScreen = new DifficultySelectScreen(managers);
 		}
-		else if (selectorY == 310)
+		else if (choice == 2)
 		{
 			nextScreen = new SettingsScreen(managers);
 		}
-		else if (selectorY == 360)
+		else if (choice == 3)
 		{
 			mLeave = true;
 		}
@@ -91,7 +115,7 @@ void MainMenuScreen::Update()
 	{
 		mLeave = true;
 	}
-	if (selectorY == 260)
+	if (choice == 1)
 	{
 		m_play->SetIsSelected(true);
 	}
@@ -99,7 +123,7 @@ void MainMenuScreen::Update()
 	{
 		m_play->SetIsSelected(false);
 	}
-	if (selectorY == 310)
+	if (choice == 2)
 	{
 		m_settings->SetIsSelected(true);
 	}
@@ -107,7 +131,7 @@ void MainMenuScreen::Update()
 	{
 		m_settings->SetIsSelected(false);
 	}
-	if (selectorY == 360)
+	if (choice== 3)
 	{
 		m_exit->SetIsSelected(true);
 	}
