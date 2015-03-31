@@ -28,6 +28,7 @@ bool Game::Init()
 		return false;
 	}
 	m_screen = new MainMenuScreen(manager);
+	m_screen->Init();
 	fpsTimer.start();
 	countedFrames = 0;
 
@@ -47,15 +48,16 @@ void Game::Update()
 	m_screen->Update();
 
 	Screen* temp = m_screen->GetNextScreen();
+	
+	if (temp != nullptr)
 	{
-		if (temp != nullptr)
-		{
-			delete m_screen;
-			m_screen = NULL;
-			m_screen = temp;
-			temp = NULL;
-		}
+		delete m_screen;
+		m_screen = NULL;
+		m_screen = temp;
+		temp = NULL;
+		m_screen->Init();
 	}
+	
 	//Clear the screen
 	manager->GetGraphicsManager()->startDraw();
 	//Have the current Screen Draw

@@ -9,6 +9,7 @@ public:
 
 	void Update();
 	void Draw();
+	void Init();
 private:
 	Texture* m_background;
 	Texture* m_title;

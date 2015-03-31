@@ -4,7 +4,10 @@ LoadingScreen::LoadingScreen(Managers* managerRef) :Screen(managerRef)
 {
 	
 }
+void LoadingScreen::Init()
+{
 
+}
 
 LoadingScreen::~LoadingScreen()
 {

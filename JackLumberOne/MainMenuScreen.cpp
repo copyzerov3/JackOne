@@ -4,18 +4,21 @@
 
 MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 {
-	mBackground = managerRef->GetResourceManager()->GetTexture("Background", mBackground);
-	mSelector = managerRef->GetResourceManager()->GetTexture("menuSelector", mSelector);
-	m_exit = new Button("ExitButton", managerRef->GetResourceManager());
-	m_play = new Button("PlayButton", managerRef->GetResourceManager());
-	m_settings = new Button("SettingsButton", managerRef->GetResourceManager());
+	
+}
+void MainMenuScreen::Init()
+{
+	mBackground = managers->GetResourceManager()->GetTexture("Background", mBackground);
+	mSelector = managers->GetResourceManager()->GetTexture("menuSelector", mSelector);
+	m_exit = new Button("ExitButton", managers->GetResourceManager());
+	m_play = new Button("PlayButton", managers->GetResourceManager());
+	m_settings = new Button("SettingsButton", managers->GetResourceManager());
 	m_title = new Texture();
 	MakeTTFTexture("Title", m_title);
 	selectorY = 260;
 	timer.start();
 	m_play->SetIsSelected(true);
 }
-
 
 MainMenuScreen::~MainMenuScreen()
 {

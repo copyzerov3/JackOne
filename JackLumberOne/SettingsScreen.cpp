@@ -3,10 +3,12 @@
 
 SettingsScreen::SettingsScreen(Managers* managerRef) :Screen(managerRef)
 {
-	managerRef->GetResourceManager()->GetTexture("background", m_background);
+}
+void SettingsScreen::Init()
+{
+	managers->GetResourceManager()->GetTexture("Background", m_background);
 	MakeTTFTexture("Settings", m_title);
 }
-
 
 SettingsScreen::~SettingsScreen()
 {

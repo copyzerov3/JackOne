@@ -3,10 +3,13 @@
 
 LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
 {
-	managerRef->GetResourceManager()->GetTexture("background", m_background);
+	
+}
+void LevelSelectScreen::Init()
+{
+	managers->GetResourceManager()->GetTexture("background", m_background);
 	MakeTTFTexture("LevelSelectScreen", m_title);
 }
-
 
 LevelSelectScreen::~LevelSelectScreen()
 {

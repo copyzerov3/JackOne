@@ -3,8 +3,13 @@
 #include "LevelSelectScreen.h"
 DifficultySelectScreen::DifficultySelectScreen(Managers* managerRef) :Screen(managerRef)
 {
-	managerRef->GetResourceManager()->GetTexture("background", mBackground);
-	managerRef->GetResourceManager()->GetTexture("selector", m_selector);
+	
+}
+
+void DifficultySelectScreen::Init()
+{
+	managers->GetResourceManager()->GetTexture("background", mBackground);
+	managers->GetResourceManager()->GetTexture("selector", m_selector);
 	MakeTTFTexture("Difficulty Select",m_title);
 	MakeTTFTexture("Easy", m_easy);
 	MakeTTFTexture("Medium", m_med);

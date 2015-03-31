@@ -9,7 +9,7 @@ public:
 
 	void Update();
 	void Draw();
-
+	void Init();
 private:
 	Texture *mBackground,
 		*m_title,
