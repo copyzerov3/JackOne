@@ -23,9 +23,31 @@ public:
 	{
 		return m_selected;
 	}
+	int GetX()
+	{
+		return m_x;
+	}
+	int GetY()
+	{
+		return m_y;
+	}
+	void SetX(int x)
+	{
+		m_x = x;
+	}
+	void SetY(int y)
+	{
+		m_y = y;
+	}
+	void SetPosition(int x, int y)
+	{
+		SetX(x);
+		SetY(y);
+	}
 private:
 	bool m_selected;
 	Texture* m_regular,*m_pressed;
+	int m_x, m_y;
 
 };
 
