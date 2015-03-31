@@ -4,10 +4,16 @@
 SettingsScreen::SettingsScreen(Managers* managerRef) :Screen(managerRef)
 {
 }
-void SettingsScreen::Init()
+bool SettingsScreen::Init()
 {
-	managers->GetResourceManager()->GetTexture("Background", m_background);
+	m_background = managers->GetResourceManager()->GetTexture("Background", m_background);
+	if (m_background == nullptr)
+		return false;
+	m_title = new Texture();
 	MakeTTFTexture("Settings", m_title);
+	if (m_title == nullptr)
+		return false;
+	return true;
 }
 
 SettingsScreen::~SettingsScreen()
@@ -17,9 +23,10 @@ SettingsScreen::~SettingsScreen()
 
 void SettingsScreen::Draw()
 {
-
-	m_background->Render(managers->GetGraphicsManager()->GetRenderer(), 0, 0);
-	m_title->Render(managers->GetGraphicsManager()->GetRenderer(), (managers->GetGraphicsManager()->GetScreenWidth()-m_title->GetWidth())/2, 0);
+	if (m_background != nullptr)
+		m_background->Render(managers->GetGraphicsManager()->GetRenderer(), 0, 0);
+	if (m_title != nullptr)
+		m_title->Render(managers->GetGraphicsManager()->GetRenderer(), (managers->GetGraphicsManager()->GetScreenWidth()-m_title->GetWidth())/2, 0);
 }
 
 void SettingsScreen::Update()

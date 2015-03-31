@@ -9,7 +9,7 @@ public:
 	~LoadingScreen();
 	void Update();
 	void Draw();
-	void Init();
+	bool Init();
 private:
 	
 };

@@ -6,20 +6,41 @@ DifficultySelectScreen::DifficultySelectScreen(Managers* managerRef) :Screen(man
 	
 }
 
-void DifficultySelectScreen::Init()
+bool DifficultySelectScreen::Init()
 {
-	managers->GetResourceManager()->GetTexture("background", mBackground);
-	managers->GetResourceManager()->GetTexture("selector", m_selector);
+	mBackground = managers->GetResourceManager()->GetTexture("Background", mBackground);
+	if (mBackground == nullptr)
+		return false;
+	m_selector = managers->GetResourceManager()->GetTexture("menuSelector", m_selector);
+	if (m_selector == nullptr)
+		return false;
+	m_title = new Texture();
+	m_descriptionEasy = new Texture();
+	m_descriptionHard = new Texture();
+	m_descriptionMed = new Texture();
+
 	MakeTTFTexture("Difficulty Select",m_title);
-	MakeTTFTexture("Easy", m_easy);
-	MakeTTFTexture("Medium", m_med);
-	MakeTTFTexture("Hard", m_hard);
 	MakeTTFTexture("I like things super easy", m_descriptionEasy);
 	MakeTTFTexture("I enjoy a challenge", m_descriptionMed);
 	MakeTTFTexture("I am a sado masochist", m_descriptionHard);
 
-	m_selectorY = 90;
+	m_easy = new Button("EasyButton", managers->GetResourceManager());
+	m_med = new Button("MediumButton", managers->GetResourceManager());
+	m_hard = new Button("HardButton", managers->GetResourceManager());
+
+	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
+	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
+
+	m_easy->SetPosition((WIDTH - m_easy->GetWidth()) / 2, 100);
+	m_med->SetPosition((WIDTH - m_med->GetWidth()) / 2, 200);
+	m_hard->SetPosition((WIDTH - m_hard->GetWidth()) / 2, 300);
+
+	m_easy->SetIsSelected(true);
+
+	choice = 1;
 	timer.start();
+
+	return true;
 }
 
 DifficultySelectScreen::~DifficultySelectScreen()
@@ -31,7 +52,9 @@ DifficultySelectScreen::~DifficultySelectScreen()
 	delete m_descriptionEasy;
 	delete m_descriptionHard;
 	delete m_descriptionMed;
-	m_selectorY = 0;
+	mBackground = nullptr;
+	m_selector = nullptr;
+	choice = 0;
 }
 
 void DifficultySelectScreen::Draw()
@@ -42,25 +65,32 @@ void DifficultySelectScreen::Draw()
 
 	mBackground->Render(r, 0, 0);
 	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
-	m_easy->Render(r, (WIDTH - m_easy->GetWidth()) / 2, 100);
-	m_med->Render(r, (WIDTH - m_med->GetWidth()) / 2, 150);
-	m_hard->Render(r, (WIDTH - m_hard->GetWidth()) / 2, 200);
+	m_easy->Render(r);
+	m_med->Render(r);
+	m_hard->Render(r);
 
-	m_selector->Render(r, 200, m_selectorY);
+	int posX = 0, posY = 0;
 
-	if (m_selectorY == 90)
+	switch (choice)
 	{
+	case 1:
 		m_descriptionEasy->Render(r, (WIDTH - m_descriptionEasy->GetWidth()) / 2, HEIGHT - m_descriptionEasy->GetHeight());
-	}
-	else if (m_selectorY == 140)
-	{
+		posY = m_easy->GetY() + ((unsigned int(m_easy->GetHeight() - m_selector->GetHeight())) / 2);
+		posX = m_easy->GetX() - m_selector->GetWidth();
+		break;
+	case 2:
 		m_descriptionMed->Render(r, (WIDTH - m_descriptionMed->GetWidth()) / 2, HEIGHT - m_descriptionMed->GetHeight());
-	}
-	else if (m_selectorY == 190)
-	{
+		posY = m_med->GetY() + ((unsigned int(m_med->GetHeight() - m_selector->GetHeight())) / 2);
+		posX = m_med->GetX() - m_selector->GetWidth();
+		break;
+	case 3:
 		m_descriptionHard->Render(r, (WIDTH - m_descriptionHard->GetWidth()) / 2, HEIGHT - m_descriptionHard->GetHeight());
+		posY = m_hard->GetY() + ((unsigned int(m_hard->GetHeight() - m_selector->GetHeight())) / 2);
+		posX = m_hard->GetX() - m_selector->GetWidth();
+		break;
 	}
 
+	m_selector->Render(r, posX,posY);
 }
 void DifficultySelectScreen::Update()
 {
@@ -74,35 +104,35 @@ void DifficultySelectScreen::Update()
 	if (i->GetUp())
 	{
 		timer.start();
-		m_selectorY -= 50;
+		choice--;
 
-		if (m_selectorY == 40)
+		if (choice == 0)
 		{
-			m_selectorY += 150;
+			choice = 3;
 		}
 	}
 	else if (i->GetDown())
 	{
 		timer.start();
-		m_selectorY += 50;
+		choice++;
 
-		if (m_selectorY == 240)
+		if (choice == 4)
 		{
-			m_selectorY -= 150;
+			choice = 1;
 		}
 	}
 	else if (managers->GetInputManager()->GetSelect() || managers->GetInputManager()->GetAttack())
 	{
 		GlobalsManager* g = managers->GetGlobalsManager();
-		if (m_selectorY == 90)
+		if (choice == 1)
 		{
 			g->SetDifficulty(g->EASY);
 		}
-		else if (m_selectorY == 140)
+		else if (choice == 2)
 		{
 			g->SetDifficulty(g->MEDIUM);
 		}
-		else if (m_selectorY == 190)
+		else if (choice == 3)
 		{
 			g->SetDifficulty(g->HARD);
 		}
@@ -116,4 +146,29 @@ void DifficultySelectScreen::Update()
 	{
 		nextScreen = new MainMenuScreen(managers);
 	}
+	if (choice == 1)
+	{
+		m_easy->SetIsSelected(true);
+	}
+	else
+	{
+		m_easy->SetIsSelected(false);
+	}
+	if (choice == 2)
+	{
+		m_med->SetIsSelected(true);
+	}
+	else
+	{
+		m_med->SetIsSelected(false);
+	}
+	if (choice == 3)
+	{
+		m_hard->SetIsSelected(true);
+	}
+	else
+	{
+		m_hard->SetIsSelected(false);
+	}
+
 }

@@ -11,7 +11,7 @@ public:
 
 	void Update();
 	void Draw();
-	void Init();
+	bool Init();
 private:
 	Texture* mBackground;
 	Texture* mSelector;

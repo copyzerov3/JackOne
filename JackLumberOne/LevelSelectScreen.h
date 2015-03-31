@@ -8,7 +8,7 @@ public:
 
 	void Update();
 	void Draw();
-	void Init();
+	bool Init();
 private:
 	Texture *m_background,
 		*m_title;

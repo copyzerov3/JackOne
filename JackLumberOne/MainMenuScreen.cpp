@@ -6,10 +6,14 @@ MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 {
 	
 }
-void MainMenuScreen::Init()
+bool MainMenuScreen::Init()
 {
 	mBackground = managers->GetResourceManager()->GetTexture("Background", mBackground);
+	if (mBackground == nullptr)
+		return false;
 	mSelector = managers->GetResourceManager()->GetTexture("menuSelector", mSelector);
+	if (mSelector == nullptr)
+		return false;
 	m_exit = new Button("ExitButton", managers->GetResourceManager());
 	m_play = new Button("PlayButton", managers->GetResourceManager());
 	m_settings = new Button("SettingsButton", managers->GetResourceManager());
@@ -26,7 +30,7 @@ void MainMenuScreen::Init()
 	m_play->SetPosition((WIDTH - m_play->GetWidth()) / 2, (mid) / 2);
 	m_settings->SetPosition((WIDTH - m_settings->GetWidth()) / 2, mid);
 	m_exit->SetPosition((WIDTH - m_exit->GetWidth()) / 2, mid + (mid / 2));
-
+	return true;
 }
 
 MainMenuScreen::~MainMenuScreen()
