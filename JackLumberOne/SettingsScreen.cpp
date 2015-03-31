@@ -6,13 +6,9 @@ SettingsScreen::SettingsScreen(Managers* managerRef) :Screen(managerRef)
 }
 bool SettingsScreen::Init()
 {
-	m_background = managers->GetResourceManager()->GetTexture("Background", m_background);
-	if (m_background == nullptr)
+	if(!managers->GetResourceManager()->GetTexture("Background", m_background))
 		return false;
-	m_title = new Texture();
 	MakeTTFTexture("Settings", m_title);
-	if (m_title == nullptr)
-		return false;
 	return true;
 }
 

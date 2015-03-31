@@ -22,8 +22,10 @@ public:
 		return nextScreen;
 	}
 
-	void MakeTTFTexture(std::string words, Texture* texture, SDL_Color colour= { 0, 0, 0 })
+	void MakeTTFTexture(std::string words, Texture* &texture, SDL_Color colour= { 0, 0, 0 })
 	{
+		if (texture == nullptr)
+			texture = new Texture();
 		texture->LoadFromRenderedText(words, colour,managers->GetGraphicsManager()->GetRenderer(),managers->GetGraphicsManager()->GetFont());
 	}
 protected:

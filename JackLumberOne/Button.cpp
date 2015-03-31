@@ -7,13 +7,11 @@ Button::Button()
 }
 bool Button::Init(std::string name, ResourceManager* manager, bool needPressed)
 {
-	m_regular = manager->GetTexture(name + "Reg", m_regular);
-	if (m_regular == nullptr)
+	if(!manager->GetTexture(name + "Reg", m_regular))
 		return false;
 	if (needPressed)
 	{
-		m_pressed = manager->GetTexture(name + "Pressed", m_pressed);
-		if (m_pressed == nullptr)
+		if(!manager->GetTexture(name + "Pressed", m_pressed))
 			return false;
 	}
 	m_selected = false;

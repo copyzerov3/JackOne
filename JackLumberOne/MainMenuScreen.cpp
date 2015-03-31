@@ -8,11 +8,9 @@ MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
 }
 bool MainMenuScreen::Init()
 {
-	mBackground = managers->GetResourceManager()->GetTexture("Background", mBackground);
-	if (mBackground == nullptr)
+	if(!managers->GetResourceManager()->GetTexture("Background", mBackground))
 		return false;
-	mSelector = managers->GetResourceManager()->GetTexture("menuSelector", mSelector);
-	if (mSelector == nullptr)
+	if(!managers->GetResourceManager()->GetTexture("menuSelector", mSelector))
 		return false;
 
 	m_exit = new Button();
@@ -27,8 +25,6 @@ bool MainMenuScreen::Init()
 	if (!m_settings->Init("SettingsButton", managers->GetResourceManager()))
 		return false;
 
-
-	m_title = new Texture();
 	MakeTTFTexture("Title", m_title);
 	choice = 1;
 	timer.start();

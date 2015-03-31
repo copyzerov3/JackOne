@@ -8,17 +8,10 @@ DifficultySelectScreen::DifficultySelectScreen(Managers* managerRef) :Screen(man
 
 bool DifficultySelectScreen::Init()
 {
-	mBackground = managers->GetResourceManager()->GetTexture("Background", mBackground);
-	if (mBackground == nullptr)
+	if(!managers->GetResourceManager()->GetTexture("Background", mBackground))
 		return false;
-	m_selector = managers->GetResourceManager()->GetTexture("menuSelector", m_selector);
-	if (m_selector == nullptr)
+	if(!managers->GetResourceManager()->GetTexture("menuSelector", m_selector))
 		return false;
-	m_title = new Texture();
-	m_descriptionEasy = new Texture();
-	m_descriptionHard = new Texture();
-	m_descriptionMed = new Texture();
-
 	MakeTTFTexture("Difficulty Select",m_title);
 	MakeTTFTexture("I like things super easy", m_descriptionEasy);
 	MakeTTFTexture("I enjoy a challenge", m_descriptionMed);

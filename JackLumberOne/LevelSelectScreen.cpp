@@ -7,10 +7,9 @@ LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
 }
 bool LevelSelectScreen::Init()
 {
-	m_background = managers->GetResourceManager()->GetTexture("Background", m_background);
+	if(!managers->GetResourceManager()->GetTexture("Background", m_background))
 	if (m_background == nullptr)
 		return false;
-	m_title = new Texture();
 	MakeTTFTexture("Level Select Screen", m_title);
 
 	return true;

@@ -146,10 +146,9 @@ bool ResourceManager::Init()
 	return true;
 
 }
-Texture* ResourceManager::GetTexture(std::string title,Texture* container)
+bool ResourceManager::GetTexture(std::string title,Texture* &container)
 {
 	int stringHash = resources.HashFunction(title);
 	//printf("title  = %s String Hash = %d\n", title.c_str(), stringHash);
-	resources.Find(stringHash, &container);
-	return container;
+	return resources.Find(stringHash, &container);
 }
