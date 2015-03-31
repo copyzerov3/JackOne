@@ -1,7 +1,13 @@
 BackButtonPressed
 BackButtonReg
+EasyButtonPressed
+EasyButtonReg
 ExitButtonPressed
 ExitButtonReg
+HardButtonPressed
+HardButtonReg
+MediumButtonPressed
+MediumButtonReg
 NoButtonPressed
 NoButtonReg
 PlayButtonPressed
