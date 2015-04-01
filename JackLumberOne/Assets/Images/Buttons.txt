@@ -6,6 +6,14 @@ ExitButtonPressed
 ExitButtonReg
 HardButtonPressed
 HardButtonReg
+LevelOnePressed
+LevelOneRegular
+LevelThreeLocked
+LevelThreePressed
+LevelThreeRegular
+LevelTwoLocked
+LevelTwoPressed
+LevelTwoRegular
 MediumButtonPressed
 MediumButtonReg
 NoButtonPressed
