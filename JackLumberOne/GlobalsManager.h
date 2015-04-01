@@ -62,6 +62,89 @@ public:
 	unsigned int GetWaterLevel(){ return m_waterGrenadelvl; }
 	void SetWaterLevel(unsigned int level){ m_waterGrenadelvl = level; }
 
+	bool IsForestTwoUnlocked()
+	{
+		return m_forestTwo;
+	}
+	void SetForestTwoUnlocked(bool val)
+	{
+		m_forestTwo = val;
+	}
+	bool IsForestThreeUnlocked()
+	{
+		return m_forestThree;
+	}
+	void SetForestThreeUnlocked(bool val)
+	{
+		m_forestThree = val;
+	}
+	bool IsDesertTwoUnlocked()
+	{
+		return m_desertTwo;
+	}
+	void SetDesertTwoUnlocked(bool val)
+	{
+		m_desertTwo = val;
+	}
+	bool IsDesertThreeUnlocked()
+	{
+		return m_desertThree;
+	}
+	void SetDesertThree(bool val)
+	{
+		m_desertThree = val;
+	}
+
+	bool IsSeaTwoUnlocked()
+	{
+		return m_seaTwo;
+	}
+	void SetSeaTwoUnlocked(bool val)
+	{
+		m_seaTwo = val;
+	}
+	bool IsSeaThreeUnlocked()
+	{
+		return m_seaThree;
+	}
+	void SetSeaThree(bool val)
+	{
+		m_seaThree = val;
+	}
+
+	bool IsCityTwoUnlocked()
+	{
+		return m_cityTwo;
+	}
+	void SetCityTwoUnlocked(bool val)
+	{
+		m_cityTwo = val;
+	}
+	bool IsCityThreeUnlocked()
+	{
+		return m_cityThree;
+	}
+	void SetCityThree(bool val)
+	{
+		m_cityThree = val;
+	}
+
+	bool IsSpaceTwoUnlocked()
+	{
+		return m_spaceTwo;
+	}
+	void SetSpaceTwoUnlocked(bool val)
+	{
+		m_spaceTwo = val;
+	}
+	bool IsSpaceThreeUnlocked()
+	{
+		return m_spaceThree;
+	}
+	void SetSpaceThree(bool val)
+	{
+		m_spaceThree = val;
+	}
 private :
 	DIFFICULTY m_difficulty;
 	GAMETYPE m_mode;
@@ -73,5 +156,15 @@ private :
 	unsigned int m_lavaBalllvl;
 	unsigned int m_staticBalllvl;
 	unsigned int m_waterGrenadelvl;
+	bool m_forestTwo;
+	bool m_forestThree;
+	bool m_desertTwo;
+	bool m_desertThree;
+	bool m_seaTwo;
+	bool m_seaThree;
+	bool m_cityTwo;
+	bool m_cityThree;
+	bool m_spaceTwo;
+	bool m_spaceThree;
 };
 
