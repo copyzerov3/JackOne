@@ -145,6 +145,11 @@ public:
 	{
 		m_spaceThree = val;
 	}
+
+	bool IsSpaceUnlocked()
+	{
+		return (m_cityThree && m_forestThree && m_seaThree && m_desertThree);
+	}
 private :
 	DIFFICULTY m_difficulty;
 	GAMETYPE m_mode;

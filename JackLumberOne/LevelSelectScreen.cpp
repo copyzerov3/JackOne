@@ -4,6 +4,10 @@
 LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
 {
 	choice = 1;
+	if (managers->GetGlobalsManager()->IsSpaceUnlocked())
+		max = 5;
+	else
+		max = 6;
 }
 bool LevelSelectScreen::Init()
 {
@@ -41,6 +45,7 @@ bool LevelSelectScreen::Init()
 
 	MakeTTFTexture("Forest", m_title);
 
+	timer.start();
 	return true;
 }
 
@@ -62,18 +67,23 @@ void LevelSelectScreen::Draw()
 	{
 	case 1:
 		m_forest->Render(r, 0, 0);
+		MakeTTFTexture("Forest", m_title);
 		break;
 	case 2:
 		m_desert->Render(r, 0, 0);
+		MakeTTFTexture("Desert", m_title);
 		break;
 	case 3:
 		m_city->Render(r, 0, 0);
+		MakeTTFTexture("City", m_title);
 		break;
 	case 4:
 		m_sea->Render(r, 0, 0);
+		MakeTTFTexture("Sea", m_title);
 		break;
 	case 5:
 		m_space->Render(r, 0, 0);
+		MakeTTFTexture("Space", m_title);
 		break;
 	}
 	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
@@ -83,12 +93,31 @@ void LevelSelectScreen::Update()
 {
 	InputManager* i = managers->GetInputManager();
 
+	if (timer.isStarted())
+	{
+		if (timer.getTicks() < 200)
+			return;
+	}
 	if (i->GetQuit())
 	{
 		mLeave = true;
 	}
-	else if (i->GetEscape())
+	if (i->GetEscape())
 	{
 		nextScreen = new DifficultySelectScreen(managers);
+	}
+	if (i->GetDown())
+	{
+		choice++;
+		timer.start();
+		if (choice == max)
+			choice = 1;
+	}
+	if (i->GetUp())
+	{
+		choice--;
+		timer.start();
+		if (choice == 0)
+			choice = max - 1;
 	}
 }

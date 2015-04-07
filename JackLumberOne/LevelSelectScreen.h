@@ -1,6 +1,7 @@
 #pragma once
 #include "Screen.h"
 #include "Button.h"
+#include "Timer.h"
 class LevelSelectScreen:public Screen
 {
 public:
@@ -16,4 +17,6 @@ private:
 	Button *m_levelOne, *m_levelTwo, *m_levelThree;
 
 	int choice;
+	int max;
+	Timer timer;
 };
