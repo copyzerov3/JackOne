@@ -20,18 +20,18 @@ SettingsScreen::~SettingsScreen()
 void SettingsScreen::Draw()
 {
 	if (m_background != nullptr)
-		m_background->Render(managers->GetGraphicsManager()->GetRenderer(), 0, 0);
+		m_background->Render(r, 0, 0);
 	if (m_title != nullptr)
-		m_title->Render(managers->GetGraphicsManager()->GetRenderer(), (managers->GetGraphicsManager()->GetScreenWidth()-m_title->GetWidth())/2, 0);
+		m_title->Render(r, (managers->GetGraphicsManager()->GetScreenWidth()-m_title->GetWidth())/2, 0);
 }
 
 void SettingsScreen::Update()
 {
-	if (managers->GetInputManager()->GetQuit())
+	if (im->GetQuit())
 	{
 		mLeave = true;
 	}
-	else if (managers->GetInputManager()->GetEscape())
+	else if (im->GetEscape())
 	{
 		nextScreen = new MainMenuScreen(managers);
 	}

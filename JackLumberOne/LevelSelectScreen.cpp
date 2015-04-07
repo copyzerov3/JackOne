@@ -57,33 +57,49 @@ LevelSelectScreen::~LevelSelectScreen()
 	delete m_levelTwo;
 	delete m_levelThree;
 }
-
+void LevelSelectScreen::DrawForest()
+{
+	m_forest->Render(r, 0, 0);
+	MakeTTFTexture("Forest", m_title);
+}
+void LevelSelectScreen::DrawDesert()
+{
+	m_desert->Render(r, 0, 0);
+	MakeTTFTexture("Desert", m_title);
+}
+void LevelSelectScreen::DrawCity()
+{
+	m_city->Render(r, 0, 0);
+	MakeTTFTexture("City", m_title);
+}
+void LevelSelectScreen::DrawSea()
+{
+	m_sea->Render(r, 0, 0);
+	MakeTTFTexture("Sea", m_title);
+}
+void LevelSelectScreen::DrawSpace()
+{
+	m_space->Render(r, 0, 0);
+	MakeTTFTexture("Space", m_title);
+}
 void LevelSelectScreen::Draw()
 {
-	SDL_Renderer* r = managers->GetGraphicsManager()->GetRenderer();
-	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 	switch (choice)
 	{
 	case 1:
-		m_forest->Render(r, 0, 0);
-		MakeTTFTexture("Forest", m_title);
+		DrawForest();
 		break;
 	case 2:
-		m_desert->Render(r, 0, 0);
-		MakeTTFTexture("Desert", m_title);
+		DrawDesert();
 		break;
 	case 3:
-		m_city->Render(r, 0, 0);
-		MakeTTFTexture("City", m_title);
+		DrawCity();
 		break;
 	case 4:
-		m_sea->Render(r, 0, 0);
-		MakeTTFTexture("Sea", m_title);
+		DrawSea();
 		break;
 	case 5:
-		m_space->Render(r, 0, 0);
-		MakeTTFTexture("Space", m_title);
+		DrawSpace();
 		break;
 	}
 	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
@@ -91,29 +107,27 @@ void LevelSelectScreen::Draw()
 
 void LevelSelectScreen::Update()
 {
-	InputManager* i = managers->GetInputManager();
-
 	if (timer.isStarted())
 	{
 		if (timer.getTicks() < 200)
 			return;
 	}
-	if (i->GetQuit())
+	if (im->GetQuit())
 	{
 		mLeave = true;
 	}
-	if (i->GetEscape())
+	if (im->GetEscape())
 	{
 		nextScreen = new DifficultySelectScreen(managers);
 	}
-	if (i->GetDown())
+	if (im->GetDown())
 	{
 		choice++;
 		timer.start();
 		if (choice == max)
 			choice = 1;
 	}
-	if (i->GetUp())
+	if (im->GetUp())
 	{
 		choice--;
 		timer.start();

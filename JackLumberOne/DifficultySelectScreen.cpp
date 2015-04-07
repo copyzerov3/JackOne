@@ -58,10 +58,6 @@ DifficultySelectScreen::~DifficultySelectScreen()
 
 void DifficultySelectScreen::Draw()
 {
-	SDL_Renderer* r = managers->GetGraphicsManager()->GetRenderer();
-	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
-
 	mBackground->Render(r, 0, 0);
 	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
 	m_easy->Render(r);
@@ -93,14 +89,12 @@ void DifficultySelectScreen::Draw()
 }
 void DifficultySelectScreen::Update()
 {
-	InputManager* i = managers->GetInputManager();
-
 	if (timer.isStarted())
 	{
 		if (timer.getTicks() < 200)
 			return;
 	}
-	if (i->GetUp())
+	if (im->GetUp())
 	{
 		timer.start();
 		choice--;
@@ -110,7 +104,7 @@ void DifficultySelectScreen::Update()
 			choice = 3;
 		}
 	}
-	else if (i->GetDown())
+	else if (im->GetDown())
 	{
 		timer.start();
 		choice++;
@@ -120,7 +114,7 @@ void DifficultySelectScreen::Update()
 			choice = 1;
 		}
 	}
-	else if (managers->GetInputManager()->GetSelect() || managers->GetInputManager()->GetAttack())
+	else if (im->GetSelect() || im->GetAttack())
 	{
 		GlobalsManager* g = managers->GetGlobalsManager();
 		if (choice == 1)
@@ -137,11 +131,11 @@ void DifficultySelectScreen::Update()
 		}
 		nextScreen = new LevelSelectScreen(managers);
 	}
-	else if (i->GetQuit())
+	else if (im->GetQuit())
 	{
 		mLeave = true;
 	}
-	else if (i->GetEscape())
+	else if (im->GetEscape())
 	{
 		nextScreen = new MainMenuScreen(managers);
 	}

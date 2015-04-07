@@ -51,17 +51,12 @@ MainMenuScreen::~MainMenuScreen()
 
 void MainMenuScreen::Draw()
 {
+	mBackground->Render(r, 0, 0);
+	m_play->Render(r);
+	m_settings->Render(r);
+	m_exit->Render(r);
 	
-	SDL_Renderer* g = managers->GetGraphicsManager()->GetRenderer();
-
-	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
-	mBackground->Render(g, 0, 0);
-	m_play->Render(g);
-	m_settings->Render(g);
-	m_exit->Render(g);
-	
-	m_title->Render(g, (WIDTH - m_title->GetWidth()) / 2, 0);
+	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
 	int pos = 0,posX = 0;
 	
 	switch (choice)
@@ -79,7 +74,7 @@ void MainMenuScreen::Draw()
 		posX = m_exit->GetX() - mSelector->GetWidth();
 		break;
 	}
-	mSelector->Render(g,posX , pos);
+	mSelector->Render(r,posX , pos);
 }
 
 void MainMenuScreen::Update()
@@ -89,7 +84,7 @@ void MainMenuScreen::Update()
 		if (timer.getTicks() < 200)
 			return;
 	}
-	if (managers->GetInputManager()->GetUp())
+	if (im->GetUp())
 	{
 		timer.start();
 		choice--;
@@ -98,7 +93,7 @@ void MainMenuScreen::Update()
 			choice = 3;
 		}
 	}
-	else if (managers->GetInputManager()->GetDown())
+	else if (im->GetDown())
 	{
 		timer.start();
 		choice++;
@@ -107,7 +102,7 @@ void MainMenuScreen::Update()
 			choice = 1;
 		}
 	}
-	else if (managers->GetInputManager()->GetSelect() || managers->GetInputManager()->GetAttack())
+	else if (im->GetSelect() || im->GetAttack())
 	{
 		if (choice ==1)
 		{
@@ -122,7 +117,7 @@ void MainMenuScreen::Update()
 			mLeave = true;
 		}
 	}
-	else if (managers->GetInputManager()->GetEscape() || managers->GetInputManager()->GetQuit())
+	else if (im->GetEscape() || im->GetQuit())
 	{
 		mLeave = true;
 	}

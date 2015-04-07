@@ -32,5 +32,9 @@ protected:
 	Managers* managers;
 	bool mLeave;
 	Screen* nextScreen;
+	SDL_Renderer* r;
+	InputManager* im;
+	int WIDTH;
+	int HEIGHT;
 };
 #endif

@@ -19,4 +19,10 @@ private:
 	int choice;
 	int max;
 	Timer timer;
+	void DrawForest();
+	void DrawDesert();
+	void DrawCity();
+	void DrawSea();
+	void DrawSpace();
+
 };
