@@ -9,7 +9,7 @@ public:
 	Texture();
 	~Texture();
 
-	bool LoadFromFile(std::string path,SDL_Renderer* renderer);
+	bool LoadFromFile(std::string path,SDL_Renderer* renderer,std::string name);
 
 	bool LoadFromRenderedText(std::string textureText, SDL_Color textColor,SDL_Renderer* renderer,TTF_Font* font);
 
@@ -32,9 +32,13 @@ public:
 	void RenderAsBuffer(SDL_Renderer* renderer, SDL_Rect* screen);
 	int GetWidth();
 	int GetHeight();
+	std::string GetName()
+	{
+		return m_name;
+	}
 private:
 	SDL_Texture* m_texture;
-
+	std::string m_name;
 	int m_width;
 	int m_height;
 };

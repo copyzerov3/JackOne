@@ -30,10 +30,10 @@ bool Texture::CreateBlank(SDL_Renderer* renderer,int width, int height, SDL_Text
 	}
 	return true;
 }
-bool Texture::LoadFromFile(std::string path,SDL_Renderer* renderer)
+bool Texture::LoadFromFile(std::string path,SDL_Renderer* renderer,std::string name)
 {
 	Free();
-
+	m_name = name;
 	SDL_Texture* newTexture = NULL;
 
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());

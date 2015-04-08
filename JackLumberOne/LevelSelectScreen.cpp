@@ -49,6 +49,7 @@ bool LevelSelectScreen::Init()
 	MakeTTFTexture("Forest", m_title);
 
 	timer.start();
+	SetChoice();
 	return true;
 }
 
@@ -71,7 +72,7 @@ void LevelSelectScreen::DrawForest()
 	}
 	else
 	{
-		m_lockedTwo->Render(r, 0 * scaleMode, 0 * scaleMode);
+		m_lockedTwo->Render(r, 400 * scaleMode, 300 * scaleMode);
 	}
 	if (g->IsForestThreeUnlocked())
 	{
@@ -79,7 +80,7 @@ void LevelSelectScreen::DrawForest()
 	}
 	else
 	{
-		m_lockedThree->Render(r, 0 * scaleMode, 0 * scaleMode);
+		m_lockedThree->Render(r, 600 * scaleMode, 400 * scaleMode);
 	}
 }
 void LevelSelectScreen::DrawDesert()
@@ -198,13 +199,14 @@ void LevelSelectScreen::SetChoice()
 	{
 	case 1:
 		MakeTTFTexture("Forest", m_title);
+		m_levelOne->SetPosition(200 * scaleMode, 200 * scaleMode);
 		if (g->IsForestTwoUnlocked())
 		{
-			m_levelTwo->SetPosition(0*scaleMode,0*scaleMode);
+			m_levelTwo->SetPosition(400*scaleMode,300*scaleMode);
 		}
 		if (g->IsForestThreeUnlocked())
 		{
-			m_levelThree->SetPosition(0 * scaleMode, 0 * scaleMode);
+			m_levelThree->SetPosition(600 * scaleMode, 400 * scaleMode);
 		}
 		break;
 	case 2:

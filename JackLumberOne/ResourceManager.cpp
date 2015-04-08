@@ -16,8 +16,8 @@ bool ResourceManager::Init()
 {
 	Texture* image;
 	std::ifstream inFile("Assets/Images/Backgrounds.txt");
-	std::string line;
-
+	std::string line = "";
+	std::string name = "";
 	float scale = graphicsRef->GetScale();
 	std::string scalePath;
 
@@ -34,9 +34,10 @@ bool ResourceManager::Init()
 	{
 		stringHash = resources.HashFunction(line);
 	//	printf("%s", line);
+		name = line;
 		line = "Assets/Images/Backgrounds/" + scalePath + line + ".png";
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
+		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(),name))
 		{
 			return false;
 		}
@@ -49,9 +50,10 @@ bool ResourceManager::Init()
 	{
 		stringHash = resources.HashFunction(line);
 		//printf("%s\n", line);
+		name = line;
 		line = "Assets/Images/Sprites/Bosses/" + scalePath + line + ".png";
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
+		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
 		{
 			return false;
 		}
@@ -66,10 +68,11 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
-	//	printf("file name : %s string Hash : %d\n", line.c_str(),stringHash);
+		printf("file name : %s string Hash : %d\n", line.c_str(),stringHash);
+		name = line;
 		line = "Assets/Images/Buttons/" + scalePath + line +".png";
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
+		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
 		{
 			return false;
 		}
@@ -83,10 +86,11 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
+		name = line;
 		line = "Assets/Images/Sprites/Enemies/" + scalePath + line + ".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
+		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
 		{
 			return false;
 		}
@@ -98,10 +102,11 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
+		name = line;
 		line = "Assets/Images/GUI/" + scalePath + line +".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
+		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
 		{
 			return false;
 		}
@@ -113,10 +118,11 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
+		name = line;
 		line = "Assets/Images/Sprites/Player/" + scalePath + line + ".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
+		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
 		{
 			return false;
 		}
@@ -128,10 +134,11 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
+		name = line;
 		line = "Assets/Images/Projectiles/" + scalePath + line + ".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer()))
+		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
 		{
 			return false;
 		}
@@ -145,6 +152,32 @@ bool ResourceManager::Init()
 bool ResourceManager::GetTexture(std::string title,Texture* &container)
 {
 	int stringHash = resources.HashFunction(title);
+	int org = stringHash;
 	//printf("title  = %s String Hash = %d\n", title.c_str(), stringHash);
-	return resources.Find(stringHash, &container);
+	if (!resources.Find(stringHash, &container))
+	{
+		return false;
+	}
+	if (container->GetName() != title)
+	{
+		stringHash++;
+		while (stringHash%resources.GetSize() != org)
+		{
+			
+			if (!resources.FindWithHash(stringHash%resources.GetSize(),&container,org))
+			{
+				return false;
+			}
+			else
+			{
+				if (container->GetName() != title)
+				{
+					stringHash++;
+				}
+				return true;
+			}
+			
+		}
+	}
+	return true;
 }

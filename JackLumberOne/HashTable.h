@@ -65,6 +65,10 @@ public:
 	bool Find(int key, T *obj)
 	{
 		int hash = HashFunction(key);
+		return FindWithHash(hash,obj,key);
+	}
+	bool FindWithHash(int hash, T *obj,int key)
+	{
 		int originalHash = hash;
 
 		while (m_table[hash].GetKey() != -1)
@@ -84,7 +88,6 @@ public:
 		}
 		return false;
 	}
-
 	int HashFunction(int key)
 	{
 		return key%m_size;
