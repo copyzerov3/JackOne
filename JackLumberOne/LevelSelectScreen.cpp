@@ -39,9 +39,12 @@ bool LevelSelectScreen::Init()
 	m_levelTwo = new Button();
 	m_levelThree = new Button();
 
-	m_levelOne->Init("LevelOneButton", r);
-	m_levelTwo->Init("LevelTwoButton", r);
-	m_levelThree->Init("LevelThreeButton", r);
+	if (!m_levelOne->Init("LevelOne", r))
+		return false;
+	if (!m_levelTwo->Init("LevelTwo", r))
+		return false;
+	if (!m_levelThree->Init("LevelThree", r))
+		return false;
 
 	MakeTTFTexture("Forest", m_title);
 
