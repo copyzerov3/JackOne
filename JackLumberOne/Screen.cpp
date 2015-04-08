@@ -10,6 +10,7 @@ Screen::Screen(Managers* managerRef)
 	WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
 	r = managers->GetGraphicsManager()->GetRenderer();
 	im = managers->GetInputManager();
+	scaleMode = managers->GetGraphicsManager()->GetScale();
 }
 
 

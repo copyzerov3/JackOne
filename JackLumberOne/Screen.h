@@ -36,5 +36,6 @@ protected:
 	InputManager* im;
 	int WIDTH;
 	int HEIGHT;
+	int scaleMode;
 };
 #endif
