@@ -12,11 +12,23 @@ public:
 	void Draw();
 	bool Init();
 private:
-	Texture *m_forest,*m_desert,*m_city,*m_sea,*m_background,*m_space,*m_lockedTwo,*m_lockedThree,
-		*m_title,*m_description;
-	Button *m_levelOne, *m_levelTwo, *m_levelThree;
+	Texture *m_forestLevelOne,
+		*m_forestLevelTwo,
+		*m_forestLevelThree,
+		*m_desertLevelOne,
+		*m_desertLevelTwo,
+		*m_desertLevelThree,
+		*m_cityLevelOne,
+		*m_cityLevelTwo,
+		*m_cityLevelThree,
+		*m_seaLevelOne,
+		*m_seaLevelTwo,
+		*m_seaLevelThree,
+		*m_spaceLevelOne,
+		*m_spaceLevelTwo,
+		*m_spaceLevelThree;
 
-	int choice;
+	int choice,choiceLevel;
 	int max;
 	Timer timer;
 	void DrawForest();
@@ -24,6 +36,5 @@ private:
 	void DrawCity();
 	void DrawSea();
 	void DrawSpace();
-	void SetChoice();
 
 };
