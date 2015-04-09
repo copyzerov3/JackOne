@@ -8,165 +8,126 @@ LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
 		max = 5;
 	else
 		max = 6;
+	choiceLevel = 1;
 }
 bool LevelSelectScreen::Init()
 {
 	ResourceManager* r = managers->GetResourceManager();
-	if(!r->GetTexture("Background", m_background))
+	if(!r->GetTexture("ForestLevelOneBackground", m_forestLevelOne))
 		return false;
-	if (!r->GetTexture("CityAreaBackground", m_city))
+	if (!r->GetTexture("ForestLevelTwoBackground", m_forestLevelTwo))
 		return false;
-
-	if (!r->GetTexture("DesertAreaBackground", m_desert))
-		return false;
-
-	if (!r->GetTexture("ForestAreaBackground", m_forest))
+	if (!r->GetTexture("ForestLevelThreeBackground", m_forestLevelThree))
 		return false;
 
-	if (!r->GetTexture("SeaAreaBackground", m_sea))
+	if (!r->GetTexture("CityLevelOneBackground", m_cityLevelOne))
+		return false;
+	if (!r->GetTexture("CityLevelTwoBackground", m_cityLevelTwo))
+		return false;
+	if (!r->GetTexture("CityLevelThreeBackground", m_cityLevelThree))
 		return false;
 
-	if (!r->GetTexture("SpaceAreaBackground", m_space))
+	if (!r->GetTexture("DesertLevelOneBackground", m_desertLevelOne))
+		return false;
+	if (!r->GetTexture("DesertLevelTwoBackground", m_desertLevelTwo))
+		return false;
+	if (!r->GetTexture("DesertLevelThreeBackground", m_desertLevelThree))
 		return false;
 
-	if (!r->GetTexture("LevelTwoLocked", m_lockedTwo))
+	if (!r->GetTexture("SeaLevelOneBackground", m_seaLevelOne))
+		return false;
+	if (!r->GetTexture("SeaLevelTwoBackground", m_seaLevelTwo))
+		return false;
+	if (!r->GetTexture("SeaLevelThreeBackground", m_seaLevelThree))
 		return false;
 
-	if (!r->GetTexture("LevelThreeLocked", m_lockedThree))
+	if (!r->GetTexture("SpaceLevelOneBackground", m_spaceLevelOne))
 		return false;
-
-	m_levelOne = new Button();
-	m_levelTwo = new Button();
-	m_levelThree = new Button();
-
-	if (!m_levelOne->Init("LevelOne", r))
+	if (!r->GetTexture("SpaceLevelTwoBackground", m_spaceLevelTwo))
 		return false;
-	if (!m_levelTwo->Init("LevelTwo", r))
+	if (!r->GetTexture("SpaceLevelThreeBackground", m_spaceLevelThree))
 		return false;
-	if (!m_levelThree->Init("LevelThree", r))
-		return false;
-
-	MakeTTFTexture("Forest", m_title);
 
 	timer.start();
-	SetChoice();
 	return true;
 }
 
 LevelSelectScreen::~LevelSelectScreen()
 {
-	delete m_title;
-	delete m_description;
-	delete m_levelOne;
-	delete m_levelTwo;
-	delete m_levelThree;
 }
 void LevelSelectScreen::DrawForest()
 {
-	GlobalsManager* g = managers->GetGlobalsManager();
-	m_forest->Render(r, 0, 0);
-
-	if (g->IsForestTwoUnlocked())
+	switch (choiceLevel)
 	{
-		m_levelTwo->Render(r);
-	}
-	else
-	{
-		m_lockedTwo->Render(r, 400 * scaleMode, 300 * scaleMode);
-	}
-	if (g->IsForestThreeUnlocked())
-	{
-		m_levelThree->Render(r);
-	}
-	else
-	{
-		m_lockedThree->Render(r, 600 * scaleMode, 400 * scaleMode);
+	case 1:
+		m_forestLevelOne->Render(r,0, 0);
+		break;
+	case 2:
+		m_forestLevelTwo->Render(r,0, 0);
+		break;
+	case 3:
+		m_forestLevelThree->Render(r, 0, 0);
+		break;
 	}
 }
 void LevelSelectScreen::DrawDesert()
 {
-	GlobalsManager* g = managers->GetGlobalsManager();
-	m_desert->Render(r, 0, 0);
-	if (g->IsDesertTwoUnlocked())
+	switch (choiceLevel)
 	{
-		m_levelTwo->Render(r);
-	}
-	else
-	{
-		m_lockedTwo->Render(r, 0 * scaleMode, 0 * scaleMode);
-	}
-	if (g->IsDesertThreeUnlocked())
-	{
-		m_levelThree->Render(r);
-	}
-	else
-	{
-		m_lockedThree->Render(r, 0 * scaleMode, 0 * scaleMode);
+	case 1:
+		m_desertLevelOne->Render(r, 0, 0);
+		break;
+	case 2:
+		m_desertLevelTwo->Render(r, 0, 0);
+		break;
+	case 3:
+		m_desertLevelThree->Render(r, 0, 0);
+		break;
 	}
 }
 void LevelSelectScreen::DrawCity()
 {
-	GlobalsManager* g = managers->GetGlobalsManager();
-	m_city->Render(r, 0, 0);
-
-	if (g->IsCityTwoUnlocked())
+	switch (choiceLevel)
 	{
-		m_levelTwo->Render(r);
-	}
-	else
-	{
-		m_lockedTwo->Render(r, 0 * scaleMode, 0 * scaleMode);
-	}
-	if (g->IsCityThreeUnlocked())
-	{
-		m_levelThree->Render(r);
-	}
-	else
-	{
-		m_lockedThree->Render(r, 0 * scaleMode, 0 * scaleMode);
+	case 1:
+		m_cityLevelOne->Render(r, 0, 0);
+		break;
+	case 2:
+		m_cityLevelTwo->Render(r, 0, 0);
+		break;
+	case 3:
+		m_cityLevelThree->Render(r, 0, 0);
+		break;
 	}
 }
 void LevelSelectScreen::DrawSea()
 {
-	GlobalsManager* g = managers->GetGlobalsManager();
-	m_sea->Render(r, 0, 0);
-	if (g->IsSeaTwoUnlocked())
+	switch (choiceLevel)
 	{
-		m_levelTwo->Render(r);
-	}
-	else
-	{
-		m_lockedTwo->Render(r, 0 * scaleMode, 0 * scaleMode);
-	}
-	if (g->IsSeaThreeUnlocked())
-	{
-		m_levelThree->Render(r);
-	}
-	else
-	{
-		m_lockedThree->Render(r, 0 * scaleMode, 0 * scaleMode);
+	case 1:
+		m_seaLevelOne->Render(r, 0, 0);
+		break;
+	case 2:
+		m_seaLevelTwo->Render(r, 0, 0);
+		break;
+	case 3:
+		m_seaLevelThree->Render(r, 0, 0);
+		break;
 	}
 }
 void LevelSelectScreen::DrawSpace()
 {
-	GlobalsManager* g = managers->GetGlobalsManager();
-	m_space->Render(r, 0, 0);
-
-	if (g->IsSpaceTwoUnlocked())
+	switch (choiceLevel)
 	{
-		m_levelTwo->Render(r);
-	}
-	else
-	{
-		m_lockedTwo->Render(r, 0 * scaleMode, 0 * scaleMode);
-	}
-	if (g->IsSpaceThreeUnlocked())
-	{
-		m_levelThree->Render(r);
-	}
-	else
-	{
-		m_lockedThree->Render(r, 0 * scaleMode, 0 * scaleMode);
+	case 1:
+		m_spaceLevelOne->Render(r, 0, 0);
+		break;
+	case 2:
+		m_spaceLevelTwo->Render(r, 0, 0);
+		break;
+	case 3:
+		m_spaceLevelThree->Render(r, 0, 0);
+		break;
 	}
 }
 void LevelSelectScreen::Draw()
@@ -189,71 +150,6 @@ void LevelSelectScreen::Draw()
 		DrawSpace();
 		break;
 	}
-	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
-	m_levelOne->Render(r);
-}
-void LevelSelectScreen::SetChoice()
-{
-	GlobalsManager* g = managers->GetGlobalsManager();
-	switch (choice)
-	{
-	case 1:
-		MakeTTFTexture("Forest", m_title);
-		m_levelOne->SetPosition(200 * scaleMode, 200 * scaleMode);
-		if (g->IsForestTwoUnlocked())
-		{
-			m_levelTwo->SetPosition(400*scaleMode,300*scaleMode);
-		}
-		if (g->IsForestThreeUnlocked())
-		{
-			m_levelThree->SetPosition(600 * scaleMode, 400 * scaleMode);
-		}
-		break;
-	case 2:
-		MakeTTFTexture("Desert", m_title);
-		if (g->IsDesertTwoUnlocked())
-		{
-			m_levelTwo->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		if (g->IsDesertThreeUnlocked())
-		{
-			m_levelThree->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		break;
-	case 3:
-		MakeTTFTexture("City", m_title);
-		if (g->IsCityTwoUnlocked())
-		{
-			m_levelTwo->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		if (g->IsCityThreeUnlocked())
-		{
-			m_levelThree->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		break;
-	case 4:
-		MakeTTFTexture("Sea", m_title);
-		if (g->IsSeaTwoUnlocked())
-		{
-			m_levelTwo->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		if (g->IsSeaThreeUnlocked())
-		{
-			m_levelThree->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		break;
-	case 5:
-		MakeTTFTexture("Space", m_title);
-		if (g->IsSpaceTwoUnlocked())
-		{
-			m_levelTwo->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		if (g->IsSpaceThreeUnlocked())
-		{
-			m_levelThree->SetPosition(0 * scaleMode, 0 * scaleMode);
-		}
-		break;
-	}
 }
 void LevelSelectScreen::Update()
 {
@@ -273,19 +169,29 @@ void LevelSelectScreen::Update()
 	if (im->GetDown())
 	{
 		choice++;
+		choiceLevel = 1;
 		timer.start();
 		if (choice == max)
 			choice = 1;
-
-		SetChoice();
 	}
 	if (im->GetUp())
 	{
 		choice--;
+		choiceLevel = 1;
 		timer.start();
 		if (choice == 0)
 			choice = max - 1;
-
-		SetChoice();
+	}
+	if (im->GetRight())
+	{
+		if (choiceLevel!= 3)
+			choiceLevel++;
+		timer.start();
+	}
+	if (im->GetLeft())
+	{
+		if (choiceLevel != 1)
+			choiceLevel--;
+		timer.start();
 	}
 }
