@@ -16,13 +16,13 @@ public:
 	~Managers()
 	{
 		delete globalManager;
-		globalManager = NULL;
+		globalManager = nullptr;
 		delete resourceManager;
-		resourceManager = NULL;
+		resourceManager = nullptr;
 		delete graphicsManager;
-		graphicsManager = NULL;
+		graphicsManager = nullptr;
 		delete inputManager;
-		inputManager = NULL;
+		inputManager = nullptr;
 
 	}
 	bool Init()
