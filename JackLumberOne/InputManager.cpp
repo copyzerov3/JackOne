@@ -225,6 +225,9 @@ void InputManager::Process()
 			case SDLK_RETURN:
 				ENTER = true;
 				break;
+			case SDLK_SPACE:
+				ATTACK = true;
+				break;
 			}
 		}
 		else if (e.type == SDL_KEYUP)
@@ -252,6 +255,9 @@ void InputManager::Process()
 				break;
 			case SDLK_RETURN:
 				ENTER = false;
+				break;
+			case SDLK_SPACE:
+				ATTACK = false;
 				break;
 			}
 		}
