@@ -153,9 +153,9 @@ bool ResourceManager::GetTexture(std::string title,Texture* &container)
 {
 	int stringHash = resources.HashFunction(title);
 	int org = stringHash;
-	//printf("title  = %s String Hash = %d\n", title.c_str(), stringHash);
 	if (!resources.Find(stringHash, &container))
 	{
+		printf("Did not find image with name %s", title.c_str());
 		return false;
 	}
 	if (container->GetName() != title)
@@ -166,6 +166,7 @@ bool ResourceManager::GetTexture(std::string title,Texture* &container)
 			
 			if (!resources.FindWithHash(stringHash%resources.GetSize(),&container,org))
 			{
+				printf("Did not find image with name %s", title.c_str());
 				return false;
 			}
 			else

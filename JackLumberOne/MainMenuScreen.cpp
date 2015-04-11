@@ -102,7 +102,7 @@ void MainMenuScreen::Update()
 			choice = 1;
 		}
 	}
-	else if (im->GetSelect() || im->GetAttack())
+	else if (im->GetEnter() || im->GetAttack() || im->GetA())
 	{
 		if (choice ==1)
 		{

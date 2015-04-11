@@ -114,7 +114,7 @@ void DifficultySelectScreen::Update()
 			choice = 1;
 		}
 	}
-	else if (im->GetSelect() || im->GetAttack())
+	else if (im->GetEnter() || im->GetAttack() || im->GetA())
 	{
 		GlobalsManager* g = managers->GetGlobalsManager();
 		if (choice == 1)
@@ -135,7 +135,7 @@ void DifficultySelectScreen::Update()
 	{
 		mLeave = true;
 	}
-	else if (im->GetEscape())
+	else if (im->GetEscape() || im->GetX())
 	{
 		nextScreen = new MainMenuScreen(managers);
 	}

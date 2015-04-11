@@ -36,5 +36,6 @@ private:
 	void DrawCity();
 	void DrawSea();
 	void DrawSpace();
+	void CheckChoice();
 
 };

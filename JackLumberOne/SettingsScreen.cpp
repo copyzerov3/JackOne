@@ -31,7 +31,7 @@ void SettingsScreen::Update()
 	{
 		mLeave = true;
 	}
-	else if (im->GetEscape())
+	else if (im->GetEscape() || im->GetX())
 	{
 		nextScreen = new MainMenuScreen(managers);
 	}

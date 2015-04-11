@@ -28,7 +28,8 @@ bool Game::Init()
 		return false;
 	}
 	m_screen = new MainMenuScreen(manager);
-	m_screen->Init();
+	if (!m_screen->Init())
+		return false;
 	fpsTimer.start();
 	countedFrames = 0;
 
@@ -63,6 +64,7 @@ bool Game::Update()
 		if (!m_screen->Init())
 		{
 			printf("Could not init new screen!");
+			SDL_Delay(5000);
 			return false;
 		}
 	}

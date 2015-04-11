@@ -7,6 +7,23 @@ public:
 		m_difficulty = EASY;
 		m_mode = NORMAL;
 		m_scraps = 0;
+		m_armorlvl = 1;
+		m_busterlvl = 1;
+		m_cityThree = false;
+		m_cityTwo = false;
+		m_desertThree = false;
+		m_desertTwo = false;
+		m_forestThree = false;
+		m_forestTwo = false;
+		m_healthlvl = 1;
+		m_lavaBalllvl = 1;
+		m_seaThree = false;
+		m_seaTwo = false;
+		m_spaceThree = false;
+		m_spaceTwo = false;
+		m_staticBalllvl = 1;
+		m_treeLaucherlvl = 1;
+		m_waterGrenadelvl = 1;
 	}
 	~GlobalsManager(){}
 	enum DIFFICULTY
@@ -19,7 +36,7 @@ public:
 	};
 	enum AREAS
 	{
-		FOREST,MOUNTAIN,CITY,OCEAN,SPACE
+		FOREST,DESERT,CITY,SEA,SPACE
 	};
 	void SetDifficulty(DIFFICULTY dif){ m_difficulty = dif; }
 	DIFFICULTY GetDifficulty(){return m_difficulty;}

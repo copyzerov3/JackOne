@@ -4,7 +4,7 @@
 InputManager::InputManager()
 {
 	UP = DOWN = LEFT = RIGHT = SELECT = ESC = QUIT = false;
-	DEAD_ZONE = 8000;
+	DEAD_ZONE = 10000;
 	controller = NULL;
 	num = -1;
 }
@@ -59,13 +59,20 @@ void InputManager::Process()
 			{
 				if (e.jaxis.axis == 0)
 				{
+
 					if (e.jaxis.value < -DEAD_ZONE)
 					{
 						LEFT = true;
+
 					}
 					else if (e.jaxis.value > DEAD_ZONE)
 					{
 						RIGHT = true;
+					}
+					else
+					{
+						LEFT = false;
+						RIGHT = false;
 					}
 
 				}
@@ -74,12 +81,10 @@ void InputManager::Process()
 					if (e.jaxis.value < -DEAD_ZONE)
 					{
 						UP = true;
-						mstickY = e.jaxis.value;
 					}
 					else if (e.jaxis.value > DEAD_ZONE)
 					{
 						DOWN = true;
-						mstickY = e.jaxis.value;
 					}
 					else
 					{
@@ -92,15 +97,52 @@ void InputManager::Process()
 		}
 		else if (e.type == SDL_JOYBUTTONDOWN)
 		{
+
 			if (e.jbutton.which == num)
 			{
 				switch (e.jbutton.button)
 				{
-				case 10:
-					ATTACK = true;
+				case 0:
+					D_UP = true;
+					break;
+				case 1:
+					D_DOWN = true;
+					break;
+				case 2:
+					D_LEFT = true;
+					break;
+				case 3:
+					D_RIGHT = true;
 					break;
 				case 4:
+					START = true;
+					break;
+				case 5:
 					SELECT = true;
+					break;
+				case 6:
+					LTHREE = true;
+					break;
+				case 7:
+					RTHREE = true;
+					break;
+				case 8:
+					L = true;
+					break;
+				case 9:
+					R = true;
+					break;
+				case 10:
+					A = true;
+					break;
+				case 11:
+					B = true;
+					break;
+				case 12:
+					X = true;
+					break;
+				case 13:
+					Y = true;
 					break;
 				}
 			}
@@ -112,11 +154,47 @@ void InputManager::Process()
 			{
 				switch (e.jbutton.button)
 				{
-				case 10:
-					ATTACK = false;
+				case 0:
+					D_UP = false;
+					break;
+				case 1:
+					D_DOWN = false;
+					break;
+				case 2:
+					D_LEFT =false;
+					break;
+				case 3:
+					D_RIGHT = false;
 					break;
 				case 4:
+					START = false;
+					break;
+				case 5:
 					SELECT = false;
+					break;
+				case 6:
+					LTHREE = false;
+					break;
+				case 7:
+					RTHREE = false;
+					break;
+				case 8:
+					L = false;
+					break;
+				case 9:
+					R = false;
+					break;
+				case 10:
+					A = false;
+					break;
+				case 11:
+					B = false;
+					break;
+				case 12:
+					X = false;
+					break;
+				case 13:
+					Y = false;
 					break;
 				}
 			}
@@ -145,7 +223,7 @@ void InputManager::Process()
 				ESC = true;
 				break;
 			case SDLK_RETURN:
-				SELECT = true;
+				ENTER = true;
 				break;
 			}
 		}
@@ -173,7 +251,7 @@ void InputManager::Process()
 				ESC = false;
 				break;
 			case SDLK_RETURN:
-				SELECT = false;
+				ENTER = false;
 				break;
 			}
 		}

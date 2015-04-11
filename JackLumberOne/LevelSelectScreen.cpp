@@ -1,10 +1,10 @@
 #include "LevelSelectScreen.h"
 #include "DifficultySelectScreen.h"
-
+#include "MissionBriefingScreen.h"
 LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
 {
 	choice = 1;
-	if (managers->GetGlobalsManager()->IsSpaceUnlocked())
+	if (!managers->GetGlobalsManager()->IsSpaceUnlocked())
 		max = 5;
 	else
 		max = 6;
@@ -151,6 +151,70 @@ void LevelSelectScreen::Draw()
 		break;
 	}
 }
+void LevelSelectScreen::CheckChoice()
+{
+	GlobalsManager* g = managers->GetGlobalsManager();
+	GlobalsManager::AREAS area;
+	switch (choice)
+	{
+		case 1:
+			area = GlobalsManager::FOREST;
+		if (!g->IsForestTwoUnlocked() && choiceLevel == 2)
+		{
+			return;
+		}
+		else if (!g->IsForestThreeUnlocked() && choiceLevel == 3)
+		{
+			return;
+		}
+		break;
+	case 2:
+		area = GlobalsManager::DESERT;
+		if (!g->IsDesertTwoUnlocked() && choiceLevel == 2)
+		{
+			return;
+		}
+		else if (!g->IsDesertThreeUnlocked() && choiceLevel == 3)
+		{
+			return;
+		}
+		break;
+	case 3:
+		area = GlobalsManager::CITY;
+		if (!g->IsCityTwoUnlocked() && choiceLevel == 2)
+		{
+			return;
+		}
+		else if (!g->IsCityThreeUnlocked() && choiceLevel == 3)
+		{
+			return;
+		}
+		break;
+	case 4:
+		area = GlobalsManager::SEA;
+		if (!g->IsSeaTwoUnlocked() && choiceLevel == 2)
+		{
+			return;
+		}
+		else if (!g->IsSeaThreeUnlocked() && choiceLevel == 3)
+		{
+			return;
+		}
+		break;
+	case 5:
+		area = GlobalsManager::SPACE;
+		if (!g->IsSpaceTwoUnlocked() && choiceLevel == 2)
+		{
+			return;
+		}
+		else if (!g->IsSpaceThreeUnlocked() && choiceLevel == 3)
+		{
+			return;
+		}
+		break;
+	}
+	nextScreen = new MissionBriefingScreen(managers, area, choiceLevel);
+}
 void LevelSelectScreen::Update()
 {
 	if (timer.isStarted())
@@ -162,7 +226,7 @@ void LevelSelectScreen::Update()
 	{
 		mLeave = true;
 	}
-	if (im->GetEscape())
+	if (im->GetEscape() || im->GetX())
 	{
 		nextScreen = new DifficultySelectScreen(managers);
 	}
@@ -193,5 +257,9 @@ void LevelSelectScreen::Update()
 		if (choiceLevel != 1)
 			choiceLevel--;
 		timer.start();
+	}
+	if (im->GetEnter() || im->GetAttack() || im->GetA())
+	{
+		CheckChoice();
 	}
 }
