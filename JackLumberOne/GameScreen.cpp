@@ -9,7 +9,7 @@ GameScreen::GameScreen(Managers* managers, GlobalsManager::AREAS area, int level
 
 GameScreen::~GameScreen()
 {
-
+	delete m_player;
 }
 
 bool GameScreen::Init()
@@ -36,8 +36,13 @@ bool GameScreen::Init()
 	}
 	if (!r->GetTexture(file, m_background))
 		return false;
+	
+	m_player = new Player();
 
-
+	if (!m_player->Init(managers))
+	{
+		return false;
+	}
 	timer.start();
 	return true;
 }
@@ -48,11 +53,12 @@ void GameScreen::Draw()
 	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 
 	m_background->Render(r, 0, 0);
+	m_player->Draw(r);
 }
 
 void GameScreen::Update()
 {
-
+	m_player->Update(im,WIDTH,HEIGHT);
 
 
 

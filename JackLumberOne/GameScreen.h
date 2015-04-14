@@ -1,6 +1,7 @@
 #pragma once
 #include "Screen.h"
 #include "Timer.h"
+#include "Player.h"
 class GameScreen :
 	public Screen
 {
@@ -18,5 +19,6 @@ private:
 
 	Texture* m_background;
 	Timer timer;
+	Player *m_player;
 };
 
