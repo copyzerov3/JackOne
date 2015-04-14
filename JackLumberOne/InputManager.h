@@ -27,7 +27,7 @@ public:
 	bool GetD_Right(){ return D_RIGHT; }
 	bool GetRThree(){ return RTHREE; }
 	bool GetLThree(){ return LTHREE; }
-
+	bool HasController(){ return controller != NULL; }
 private:
 	bool UP,
 		DOWN,
