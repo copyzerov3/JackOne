@@ -21,7 +21,18 @@ void Timer::start()
 	mStartTicks = SDL_GetTicks();
 	mPausedTicks = 0;
 }
+void Timer::stop()
+{
+	//Stop the timer
+	mStarted = false;
 
+	//Unpause the timer
+	mPaused = false;
+
+	//Clear tick variables
+	mStartTicks = 0;
+	mPausedTicks = 0;
+}
 void Timer::pause()
 {
 	if (mStarted && !mPaused)
