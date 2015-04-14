@@ -1,0 +1,14 @@
+bird
+cop
+coyote
+deer
+devil
+fighter
+fish
+hover
+Meteor
+ratJumping
+rats
+scorpion
+shark
+shield

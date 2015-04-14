@@ -1,0 +1,11 @@
+mechasinTail
+omniDragonElec
+omniDragonFire
+omniDragonGrass
+omniDragonNormal
+omniDragonWater
+omniMini
+silverCannonBack
+static
+torpedoTurtle
+waterMechasin

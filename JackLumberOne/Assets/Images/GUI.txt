@@ -1,1 +1,10 @@
+ArmorIcon
+EnergyEmpty
+EnergyFull
+Heart
 menuSelector
+Shadow
+Upgrade1
+Upgrade2
+Upgrade3
+UpgradeTokenHolder
