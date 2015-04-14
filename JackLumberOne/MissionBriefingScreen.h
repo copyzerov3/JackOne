@@ -13,7 +13,7 @@ public:
 	bool Init();
 
 private:
-	Texture *m_background;
+	Texture *m_background, *m_selector,*m_title;
 
 	Button *m_shop, *m_play;
 	Timer m_timer;

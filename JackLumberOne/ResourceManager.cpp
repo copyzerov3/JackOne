@@ -68,7 +68,7 @@ bool ResourceManager::Init()
 	while (std::getline(inFile, line))
 	{
 		stringHash = resources.HashFunction(line);
-		printf("file name : %s string Hash : %d\n", line.c_str(),stringHash);
+		//printf("file name : %s string Hash : %d\n", line.c_str(),stringHash);
 		name = line;
 		line = "Assets/Images/Buttons/" + scalePath + line +".png";
 		image = new Texture();
