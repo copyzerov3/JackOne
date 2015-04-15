@@ -2,6 +2,7 @@
 #include "Texture.h"
 #include "Timer.h"
 #include "Managers.h"
+#include "Weapon.h"
 class Player
 {
 public:
@@ -31,5 +32,7 @@ private:
 	int m_x, m_y;
 	Timer m_timer;
 	const int m_speed = 5;
+	Managers* m_managers;
+	Weapon* m_weapon;
 };
 

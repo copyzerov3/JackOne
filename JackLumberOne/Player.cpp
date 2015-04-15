@@ -1,9 +1,10 @@
 #include "Player.h"
-
+#include "BusterWeapon.h"
 
 Player::Player() : m_x(0), m_y(0)
 {
 
+	
 }
 
 
@@ -13,8 +14,9 @@ Player::~Player()
 
 bool Player::Init(Managers *managersRef)
 {
+	m_managers = managersRef;
 	ResourceManager* r = managersRef->GetResourceManager();
-
+	m_weapon = new BusterWeapon(m_managers);
 	if (!r->GetTexture("Player", m_player))
 		return false;
 	return true;
@@ -50,5 +52,14 @@ void Player::Update(InputManager *im,int WIDTH,int HEIGHT)
 		m_x+=m_speed;
 		if (m_x + GetWidth() > WIDTH)
 			m_x = WIDTH - GetWidth();
+	}
+	if (im->GetAttack())
+	{
+		if (m_weapon->CanFire())
+		{
+			printf("FIRING\n");
+			m_weapon->Fire(m_managers,m_x + GetWidth(), m_y + (GetHeight() / 2));
+		}
+			
 	}
 }

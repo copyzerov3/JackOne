@@ -54,13 +54,13 @@ void GameScreen::Draw()
 
 	m_background->Render(r, 0, 0);
 	m_player->Draw(r);
+	managers->GetBulletManager()->Draw(r,WIDTH, HEIGHT);
 }
 
 void GameScreen::Update()
 {
 	m_player->Update(im,WIDTH,HEIGHT);
-
-
+	managers->GetBulletManager()->Update(WIDTH, HEIGHT);
 
 	if (timer.isStarted())
 	{

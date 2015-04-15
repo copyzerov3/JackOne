@@ -1,30 +1,18 @@
 #pragma once
+#ifndef MANAGERS_H
+#define MANAGERS_H
+
 #include "InputManager.h"
 #include "GraphicsManager.h"
 #include "ResourceManager.h"
 #include "GlobalsManager.h"
+#include "BulletManager.h"
+class BulletManager;
 class Managers
 {
 public:
-	Managers()
-	{
-		inputManager = new InputManager();
-		graphicsManager = new GraphicsManager();
-		resourceManager = new ResourceManager(graphicsManager);
-		globalManager = new GlobalsManager();
-	}
-	~Managers()
-	{
-		delete globalManager;
-		globalManager = nullptr;
-		delete resourceManager;
-		resourceManager = nullptr;
-		delete graphicsManager;
-		graphicsManager = nullptr;
-		delete inputManager;
-		inputManager = nullptr;
-
-	}
+	Managers();
+	~Managers();
 	bool Init()
 	{
 		if (!graphicsManager->Init())
@@ -53,10 +41,16 @@ public:
 	{
 		return globalManager;
 	}
+	BulletManager* GetBulletManager()
+	{
+		return bulletManager;
+	}
 private:
 	InputManager* inputManager;
 	GraphicsManager* graphicsManager;
 	ResourceManager* resourceManager;
 	GlobalsManager* globalManager;
+	BulletManager* bulletManager;
 };
 
+#endif
