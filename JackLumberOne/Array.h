@@ -35,7 +35,8 @@ public:
 		{
 			return;
 		}
-
+		if (std::is_pointer(m_array[index]))
+			delete m_array[index];
 		for (int k = index; k < m_maxSize - 1; k++)
 			m_array[k] = m_array[k + 1];
 
