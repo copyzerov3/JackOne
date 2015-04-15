@@ -6,16 +6,16 @@ BusterWeapon::BusterWeapon(Managers* manager)
 	switch (manager->GetGlobalsManager()->GetBusterLevel())
 	{
 	case 1:
-		m_fireRate = 1500;
-		break;
-	case 2:
-		m_fireRate = 1200;
-		break;
-	case 3:
 		m_fireRate = 1000;
 		break;
-	case 4:
+	case 2:
 		m_fireRate = 800;
+		break;
+	case 3:
+		m_fireRate = 650;
+		break;
+	case 4:
+		m_fireRate = 500;
 		break;
 	}
 }
