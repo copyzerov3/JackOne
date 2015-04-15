@@ -35,12 +35,25 @@ public:
 		{
 			return;
 		}
-		if (std::is_pointer(m_array[index]))
-			delete m_array[index];
 		for (int k = index; k < m_maxSize - 1; k++)
 			m_array[k] = m_array[k + 1];
 
-		m_maxSize--;
+		m_numElements--;
+
+		if (m_numElements >= m_maxSize)
+			m_numElements = m_maxSize - 1;
+	}
+	void removePointer(int index)
+	{
+		if (index >= m_maxSize)
+		{
+			return;
+		}
+		delete m_array[index];
+		for (int k = index; k < m_maxSize - 1; k++)
+			m_array[k] = m_array[k + 1];
+
+		m_numElements--;
 
 		if (m_numElements >= m_maxSize)
 			m_numElements = m_maxSize - 1;
