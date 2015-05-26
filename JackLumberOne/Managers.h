@@ -8,6 +8,7 @@
 #include "GlobalsManager.h"
 #include "BulletManager.h"
 class BulletManager;
+
 class Managers
 {
 public:

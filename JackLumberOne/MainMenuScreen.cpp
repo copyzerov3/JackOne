@@ -2,7 +2,7 @@
 #include "SettingsScreen.h"
 #include "DifficultySelectScreen.h"
 
-MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef)
+MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef), choice(1)
 {
 	
 }
@@ -14,29 +14,31 @@ bool MainMenuScreen::Init()
 		return false;
 
 	m_exit = new Button();
+
 	if (!m_exit->Init("ExitButton", managers->GetResourceManager()))
 		return false;
 
 	m_play = new Button();
+
 	if (!m_play->Init("PlayButton", managers->GetResourceManager()))
 		return false;
 
 	m_settings = new Button();
+
 	if (!m_settings->Init("SettingsButton", managers->GetResourceManager()))
 		return false;
 
 	MakeTTFTexture("Title", m_title);
-	choice = 1;
+
 	timer.start();
 	m_play->SetIsSelected(true);
 
-	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
 	int mid = (HEIGHT + m_title->GetHeight() - m_settings->GetHeight()) / 2;
 
 	m_play->SetPosition((WIDTH - m_play->GetWidth()) / 2, (mid) / 2);
 	m_settings->SetPosition((WIDTH - m_settings->GetWidth()) / 2, mid);
 	m_exit->SetPosition((WIDTH - m_exit->GetWidth()) / 2, mid + (mid / 2));
+
 	return true;
 }
 
@@ -84,7 +86,12 @@ void MainMenuScreen::Update()
 		if (timer.getTicks() < 200)
 			return;
 	}
-	if (im->GetUp())
+	if (im->GetEscape() || im->GetQuit())
+	{
+		mLeave = true;
+		return;
+	}
+	if (im->GetUp() && !im->GetDown())
 	{
 		timer.start();
 		choice--;
@@ -93,7 +100,7 @@ void MainMenuScreen::Update()
 			choice = 3;
 		}
 	}
-	else if (im->GetDown())
+	if (im->GetDown() && !im->GetUp())
 	{
 		timer.start();
 		choice++;
@@ -102,7 +109,7 @@ void MainMenuScreen::Update()
 			choice = 1;
 		}
 	}
-	else if (im->GetEnter() || im->GetAttack() || im->GetA())
+	if (im->GetEnter() || im->GetAttack() || im->GetA())
 	{
 		if (choice ==1)
 		{
@@ -116,10 +123,6 @@ void MainMenuScreen::Update()
 		{
 			mLeave = true;
 		}
-	}
-	else if (im->GetEscape() || im->GetQuit())
-	{
-		mLeave = true;
 	}
 	if (choice == 1)
 	{
