@@ -5,7 +5,7 @@
 class LevelSelectScreen:public Screen
 {
 public:
-	LevelSelectScreen(Managers* managersRef);
+	LevelSelectScreen();
 	~LevelSelectScreen();
 
 	void Update();

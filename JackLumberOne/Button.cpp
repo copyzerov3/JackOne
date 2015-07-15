@@ -1,17 +1,16 @@
 #include "Button.h"
-#include "ResourceManager.h"
-
+#include "Managers.h"
 Button::Button()
 {
 	
 }
-bool Button::Init(std::string name, ResourceManager* manager, bool needPressed)
+bool Button::Init(std::string name, bool needPressed)
 {
-	if(!manager->GetTexture(name + "Reg", m_regular))
+	if(!Managers::GetResourceManager()->GetTexture(name + "Reg", m_regular))
 		return false;
 	if (needPressed)
 	{
-		if(!manager->GetTexture(name + "Pressed", m_pressed))
+		if (!Managers::GetResourceManager()->GetTexture(name + "Pressed", m_pressed))
 			return false;
 	}
 	m_selected = false;

@@ -13,8 +13,6 @@ public:
 	bool Update();
 
 private:
-	Managers* manager;
-
 	Screen* m_screen;
 
 	const int SCREEN_FPS = 60;

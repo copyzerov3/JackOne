@@ -1,16 +1,15 @@
 #pragma once
 #include "Texture.h"
 #include "Timer.h"
-#include "Managers.h"
 #include "Weapon.h"
 class Player
 {
 public:
 	Player();
 	~Player();
-	bool Init(Managers* managersRef);
+	bool Init();
 	void Draw(SDL_Renderer* r);
-	void Update(InputManager* im,int WIDTH,int HEIGHT);
+	void Update(int WIDTH,int HEIGHT);
 	int GetX()
 	{
 		return m_x;
@@ -32,7 +31,6 @@ private:
 	int m_x, m_y;
 	Timer m_timer;
 	const int m_speed = 5;
-	Managers* m_managers;
 	Weapon* m_weapon;
 };
 

@@ -5,7 +5,7 @@
 class DifficultySelectScreen:public Screen
 {
 public:
-	DifficultySelectScreen(Managers* managerRef);
+	DifficultySelectScreen();
 	~DifficultySelectScreen();
 
 	void Update();

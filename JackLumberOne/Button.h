@@ -1,12 +1,11 @@
 #pragma once
 #include "Texture.h"
-#include "ResourceManager.h"
 class Button
 {
 public:
 	Button();
 	~Button();
-	bool Init(std::string name, ResourceManager* manager, bool needPressed = true);
+	bool Init(std::string name, bool needPressed = true);
 	void Render(SDL_Renderer* renderer);
 	void Render(SDL_Renderer*, int x, int y);
 	int GetWidth()

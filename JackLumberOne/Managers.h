@@ -16,42 +16,52 @@ public:
 	~Managers();
 	bool Init()
 	{
-		if (!graphicsManager->Init())
+		if (!m_graphicsManager->Init())
 		{
 			return false;
 		}
-		if (!resourceManager->Init())
+		if (!m_resourceManager->Init())
 		{
 			return false;
 		}
 		return true;
 	}
-	InputManager* GetInputManager()
+	static InputManager* GetInputManager()
 	{
-		return inputManager;
+		return m_inputManager;
 	}
-	GraphicsManager* GetGraphicsManager()
+	static GraphicsManager* GetGraphicsManager()
 	{
-		return graphicsManager;
+		return m_graphicsManager;
 	}
-	ResourceManager* GetResourceManager()
+	static ResourceManager* GetResourceManager()
 	{
-		return resourceManager;
+		return m_resourceManager;
 	}
-	GlobalsManager* GetGlobalsManager()
+	static GlobalsManager* GetGlobalsManager()
 	{
-		return globalManager;
+		return m_globalManager;
 	}
-	BulletManager* GetBulletManager()
+	static BulletManager* GetBulletManager()
 	{
-		return bulletManager;
+		return m_bulletManager;
+	}
+	static Managers* GetManagers()
+	{
+		if (m_managers == nullptr)
+		{
+			m_managers = new Managers();
+		}
+		return m_managers;
 	}
 private:
-	InputManager* inputManager;
-	GraphicsManager* graphicsManager;
-	ResourceManager* resourceManager;
-	GlobalsManager* globalManager;
-	BulletManager* bulletManager;
+	static InputManager* m_inputManager;
+	static GraphicsManager* m_graphicsManager;
+	static ResourceManager* m_resourceManager;
+	static GlobalsManager* m_globalManager;
+	static BulletManager* m_bulletManager;
+	
+	static Managers* m_managers;
 };
 
 #endif

@@ -1,5 +1,5 @@
 #include "BusterBullet.h"
-
+#include "Managers.h"
 
 BusterBullet::BusterBullet()
 {
@@ -9,12 +9,12 @@ BusterBullet::BusterBullet()
 BusterBullet::~BusterBullet()
 {
 }
-bool BusterBullet::Init(Managers* managers,int x,int y)
+bool BusterBullet::Init(int x,int y)
 {
 	Texture* image;
 	int speed, damage;
-	ResourceManager* r = managers->GetResourceManager();
-	switch (managers->GetGlobalsManager()->GetBusterLevel())
+	ResourceManager* r = Managers::GetResourceManager();
+	switch (Managers::GetGlobalsManager()->GetBusterLevel())
 	{
 	case 1:
 		speed = 6;

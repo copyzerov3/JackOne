@@ -4,8 +4,8 @@ class BusterWeapon :
 	public Weapon
 {
 public:
-	BusterWeapon(Managers* manager);
+	BusterWeapon();
 	~BusterWeapon();
-	void Fire(Managers* manager,int x, int y);
+	void Fire(int x, int y);
 };
 

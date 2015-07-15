@@ -6,7 +6,7 @@ class GameScreen :
 	public Screen
 {
 public:
-	GameScreen(Managers* managers,GlobalsManager::AREAS area,int level);
+	GameScreen(GlobalsManager::AREAS area,int level);
 	~GameScreen();
 
 	bool Init();

@@ -1,16 +1,16 @@
 #include "Screen.h"
 
 
-Screen::Screen(Managers* managerRef)
+Screen::Screen()
 {
-	this->managers = managerRef;
+
 	mLeave = false;
 	nextScreen = nullptr;
-	HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
-	WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	r = managers->GetGraphicsManager()->GetRenderer();
-	im = managers->GetInputManager();
-	scaleMode = managers->GetGraphicsManager()->GetScale();
+	HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
+	WIDTH = Managers::GetGraphicsManager()->GetScreenWidth();
+	r = Managers::GetGraphicsManager()->GetRenderer();
+	im = Managers::GetInputManager();
+	scaleMode = Managers::GetGraphicsManager()->GetScale();
 }
 
 

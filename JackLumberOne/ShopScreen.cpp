@@ -1,6 +1,6 @@
 #include "ShopScreen.h"
 
-ShopScreen::ShopScreen(Managers* managers, MissionBriefingScreen* prevScreen) :Screen(managers), m_prevScreen(prevScreen)
+ShopScreen::ShopScreen( MissionBriefingScreen* prevScreen) : m_prevScreen(prevScreen)
 {
 
 }
@@ -14,7 +14,7 @@ ShopScreen::~ShopScreen()
 
 bool ShopScreen::Init()
 {
-	ResourceManager* r = managers->GetResourceManager();
+	ResourceManager* r = Managers::GetResourceManager();
 	if (!r->GetTexture("Background", m_background))
 		return false;
 	MakeTTFTexture("Shop Screen", m_title);

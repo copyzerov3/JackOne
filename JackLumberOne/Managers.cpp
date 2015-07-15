@@ -1,24 +1,29 @@
 #include "Managers.h"
-
+InputManager* Managers::m_inputManager = nullptr;
+GraphicsManager* Managers::m_graphicsManager = nullptr;
+ResourceManager* Managers::m_resourceManager = nullptr;
+GlobalsManager* Managers::m_globalManager = nullptr;
+BulletManager* Managers::m_bulletManager = nullptr;
+Managers* Managers::m_managers = nullptr;
 Managers::Managers()
 {
-	inputManager = new InputManager();
-	graphicsManager = new GraphicsManager();
-	resourceManager = new ResourceManager(graphicsManager);
-	globalManager = new GlobalsManager();
-	bulletManager = new BulletManager();
+	m_inputManager = new InputManager();
+	m_graphicsManager = new GraphicsManager();
+	m_resourceManager = new ResourceManager(m_graphicsManager);
+	m_globalManager = new GlobalsManager();
+	m_bulletManager = new BulletManager();
 }
 
 Managers::~Managers()
 {
-	delete bulletManager;
-	bulletManager = nullptr;
-	delete globalManager;
-	globalManager = nullptr;
-	delete resourceManager;
-	resourceManager = nullptr;
-	delete graphicsManager;
-	graphicsManager = nullptr;
-	delete inputManager;
-	inputManager = nullptr;
+	delete m_bulletManager;
+	m_bulletManager = nullptr;
+	delete m_globalManager;
+	m_globalManager = nullptr;
+	delete m_resourceManager;
+	m_resourceManager = nullptr;
+	delete m_graphicsManager;
+	m_graphicsManager = nullptr;
+	delete m_inputManager;
+	m_inputManager = nullptr;
 }

@@ -1,7 +1,7 @@
 #include "GameScreen.h"
 
 
-GameScreen::GameScreen(Managers* managers, GlobalsManager::AREAS area, int level) :Screen(managers), m_area(area), m_level(level)
+GameScreen::GameScreen(GlobalsManager::AREAS area, int level) :m_area(area), m_level(level)
 {
 
 }
@@ -14,7 +14,7 @@ GameScreen::~GameScreen()
 
 bool GameScreen::Init()
 {
-	ResourceManager* r = managers->GetResourceManager();
+	ResourceManager* r = Managers::GetResourceManager();
 	std::string file;
 	switch (m_area)
 	{
@@ -39,7 +39,7 @@ bool GameScreen::Init()
 	
 	m_player = new Player();
 
-	if (!m_player->Init(managers))
+	if (!m_player->Init())
 	{
 		return false;
 	}
@@ -49,18 +49,18 @@ bool GameScreen::Init()
 
 void GameScreen::Draw()
 {
-	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
+	int WIDTH = Managers::GetGraphicsManager()->GetScreenWidth();
+	int HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
 
 	m_background->Render(r, 0, 0);
 	m_player->Draw(r);
-	managers->GetBulletManager()->Draw(r,WIDTH, HEIGHT);
+	Managers::GetBulletManager()->Draw(r, WIDTH, HEIGHT);
 }
 
 void GameScreen::Update()
 {
-	m_player->Update(im,WIDTH,HEIGHT);
-	managers->GetBulletManager()->Update(WIDTH, HEIGHT);
+	m_player->Update(WIDTH,HEIGHT);
+	Managers::GetBulletManager()->Update(WIDTH, HEIGHT);
 
 	if (timer.isStarted())
 	{

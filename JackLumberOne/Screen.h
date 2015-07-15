@@ -2,11 +2,13 @@
 #ifndef __SCREEN_H
 #define __SCREEN_H
 #include <SDL.h>
+#include "Texture.h"
 #include "Managers.h"
+
 class Screen
 {
 public:
-	Screen(Managers* managerRef);
+	Screen();
 
 	~Screen();
 	virtual void Update() = 0;
@@ -26,10 +28,9 @@ public:
 	{
 		if (texture == nullptr)
 			texture = new Texture();
-		texture->LoadFromRenderedText(words, colour,managers->GetGraphicsManager()->GetRenderer(),managers->GetGraphicsManager()->GetFont());
+		texture->LoadFromRenderedText(words, colour, Managers::GetGraphicsManager()->GetRenderer(), Managers::GetGraphicsManager()->GetFont());
 	}
 protected:
-	Managers* managers;
 	bool mLeave;
 	Screen* nextScreen;
 	SDL_Renderer* r;

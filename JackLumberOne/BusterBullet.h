@@ -7,6 +7,6 @@ public:
 	BusterBullet();
 	~BusterBullet();
 
-	bool Init(Managers* managers,int x,int y);
+	bool Init(int x,int y);
 };
 

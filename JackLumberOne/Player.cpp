@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "BusterWeapon.h"
-
+#include "Managers.h"
 Player::Player() : m_x(0), m_y(0)
 {
 
@@ -12,11 +12,10 @@ Player::~Player()
 {
 }
 
-bool Player::Init(Managers *managersRef)
+bool Player::Init()
 {
-	m_managers = managersRef;
-	ResourceManager* r = managersRef->GetResourceManager();
-	m_weapon = new BusterWeapon(m_managers);
+	ResourceManager* r = Managers::GetResourceManager();
+	m_weapon = new BusterWeapon();
 	if (!r->GetTexture("Player", m_player))
 		return false;
 	return true;
@@ -25,8 +24,9 @@ void Player::Draw(SDL_Renderer* r)
 {
 	m_player->Render(r, m_x, m_y);
 }
-void Player::Update(InputManager *im,int WIDTH,int HEIGHT)
+void Player::Update(int WIDTH,int HEIGHT)
 {
+	InputManager* im = Managers::GetInputManager();
 	if (im->GetUp() && !im->GetDown())
 	{
 		m_y-= m_speed;
@@ -57,8 +57,7 @@ void Player::Update(InputManager *im,int WIDTH,int HEIGHT)
 	{
 		if (m_weapon->CanFire())
 		{
-			printf("FIRING\n");
-			m_weapon->Fire(m_managers,m_x + GetWidth(), m_y + (GetHeight() / 2));
+			m_weapon->Fire(m_x + GetWidth(), m_y + (GetHeight() / 2));
 		}
 			
 	}

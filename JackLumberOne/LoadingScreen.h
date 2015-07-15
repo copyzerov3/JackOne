@@ -5,7 +5,7 @@ class LoadingScreen :
 	public Screen
 {
 public:
-	LoadingScreen(Managers* managerRef);
+	LoadingScreen();
 	~LoadingScreen();
 	void Update();
 	void Draw();

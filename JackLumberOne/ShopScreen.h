@@ -6,7 +6,7 @@ class ShopScreen :
 	public Screen
 {
 public:
-	ShopScreen(Managers* managers,MissionBriefingScreen* screen);
+	ShopScreen(MissionBriefingScreen* screen);
 	~ShopScreen();
 
 	bool Init();

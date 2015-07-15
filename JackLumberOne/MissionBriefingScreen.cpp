@@ -3,7 +3,7 @@
 #include "ShopScreen.h"
 #include "GameScreen.h"
 
-MissionBriefingScreen::MissionBriefingScreen(Managers* managersRef, GlobalsManager::AREAS area, int level) :Screen(managersRef), m_area(area), m_level(level), choice(1)
+MissionBriefingScreen::MissionBriefingScreen(GlobalsManager::AREAS area, int level) : m_area(area), m_level(level), choice(1)
 {
 }
 
@@ -18,9 +18,9 @@ MissionBriefingScreen::~MissionBriefingScreen()
 
 bool MissionBriefingScreen::Init()
 {
-	ResourceManager* r = managers->GetResourceManager();
-	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
+	ResourceManager* r = Managers::GetResourceManager();
+	int WIDTH = Managers::GetGraphicsManager()->GetScreenWidth();
+	int HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
 	if (!r->GetTexture("Background", m_background))
 		return false;
 
@@ -28,10 +28,10 @@ bool MissionBriefingScreen::Init()
 		return false;
 
 	m_shop = new Button();
-	if (!m_shop->Init("ShopButton", r))
+	if (!m_shop->Init("ShopButton"))
 		return false;
 	m_play = new Button();
-	if (!m_play->Init("PlayButton", r))
+	if (!m_play->Init("PlayButton"))
 		return false;
 	m_timer.start();
 	m_play->SetPosition((WIDTH/3)-m_play->GetWidth()/2, HEIGHT - m_play->GetHeight() - (50 * scaleMode));
@@ -69,7 +69,7 @@ void MissionBriefingScreen::Update()
 	}
 	if (im->GetEscape() || im->GetX())
 	{
-		nextScreen = new LevelSelectScreen(managers);
+		nextScreen = new LevelSelectScreen();
 	}
 	if (im->GetLeft())
 	{
@@ -89,11 +89,11 @@ void MissionBriefingScreen::Update()
 	{
 		if (choice == 1)
 		{
-			nextScreen = new GameScreen(managers,m_area,m_level);
+			nextScreen = new GameScreen(m_area,m_level);
 		}
 		else
 		{
-			nextScreen = new ShopScreen(managers,this);
+			nextScreen = new ShopScreen(this);
 		}
 	}
 	if (choice == 1)

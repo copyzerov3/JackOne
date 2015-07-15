@@ -1,14 +1,11 @@
 #pragma once
 #include "Texture.h"
-#include "Managers.h"
-
-class Managers;
 class Bullet
 {
 public:
 	Bullet();
 	~Bullet();
-	bool Init(Managers* managers,int x, int y);
+	bool Init(int x, int y);
 	void Update(int width, int height);
 	void Draw(SDL_Renderer* r,int width, int height);
 	bool IsDead(){ return m_isDead; }

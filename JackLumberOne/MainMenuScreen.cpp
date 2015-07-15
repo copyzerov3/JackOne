@@ -2,30 +2,30 @@
 #include "SettingsScreen.h"
 #include "DifficultySelectScreen.h"
 
-MainMenuScreen::MainMenuScreen(Managers* managerRef) :Screen(managerRef), choice(1)
+MainMenuScreen::MainMenuScreen() : choice(1)
 {
 	
 }
 bool MainMenuScreen::Init()
 {
-	if(!managers->GetResourceManager()->GetTexture("Background", mBackground))
+	if (!Managers::GetResourceManager()->GetTexture("Background", mBackground))
 		return false;
-	if(!managers->GetResourceManager()->GetTexture("menuSelector", mSelector))
+	if (!Managers::GetResourceManager()->GetTexture("menuSelector", mSelector))
 		return false;
 
 	m_exit = new Button();
 
-	if (!m_exit->Init("ExitButton", managers->GetResourceManager()))
+	if (!m_exit->Init("ExitButton"))
 		return false;
 
 	m_play = new Button();
 
-	if (!m_play->Init("PlayButton", managers->GetResourceManager()))
+	if (!m_play->Init("PlayButton"))
 		return false;
 
 	m_settings = new Button();
 
-	if (!m_settings->Init("SettingsButton", managers->GetResourceManager()))
+	if (!m_settings->Init("SettingsButton"))
 		return false;
 
 	MakeTTFTexture("Title", m_title);
@@ -113,11 +113,11 @@ void MainMenuScreen::Update()
 	{
 		if (choice ==1)
 		{
-			nextScreen = new DifficultySelectScreen(managers);
+			nextScreen = new DifficultySelectScreen();
 		}
 		else if (choice == 2)
 		{
-			nextScreen = new SettingsScreen(managers);
+			nextScreen = new SettingsScreen();
 		}
 		else if (choice == 3)
 		{

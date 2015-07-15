@@ -11,8 +11,7 @@ Game::~Game()
 	delete m_screen;
 	m_screen = NULL;
 
-	delete manager;
-	manager = NULL;
+	delete Managers::GetManagers();
 
 	TTF_Quit();
 	IMG_Quit();
@@ -22,12 +21,11 @@ Game::~Game()
 
 bool Game::Init()
 {
-	manager = new Managers();
-	if (!manager->Init())
+	if (!Managers::GetManagers()->Init())
 	{
 		return false;
 	}
-	m_screen = new MainMenuScreen(manager);
+	m_screen = new MainMenuScreen();
 	if (!m_screen->Init())
 		return false;
 	fpsTimer.start();
@@ -44,7 +42,7 @@ bool Game::Update()
 	//for calculating frame rate
 	capTimer.start();
 	//Process all inputs
-	manager->GetInputManager()->Process();
+	Managers::GetInputManager()->Process();
 	//Update the screen
 	m_screen->Update();
 	//if there is supposed to be a screen transition
@@ -70,11 +68,11 @@ bool Game::Update()
 	}
 	
 	//Clear the screen
-	manager->GetGraphicsManager()->startDraw();
+	Managers::GetGraphicsManager()->startDraw();
 	//Have the current Screen Draw
 	m_screen->Draw();
 	//Present the screen to the user
-	manager->GetGraphicsManager()->endDraw();
+	Managers::GetGraphicsManager()->endDraw();
 	//increase the frames;
 	++countedFrames;
 	//if the frame went by to quickly then wait until its fit its time

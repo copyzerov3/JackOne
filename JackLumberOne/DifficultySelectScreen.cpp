@@ -1,16 +1,16 @@
 #include "DifficultySelectScreen.h"
 #include "MainMenuScreen.h"
 #include "LevelSelectScreen.h"
-DifficultySelectScreen::DifficultySelectScreen(Managers* managerRef) :Screen(managerRef)
+DifficultySelectScreen::DifficultySelectScreen()
 {
 	
 }
 
 bool DifficultySelectScreen::Init()
 {
-	if(!managers->GetResourceManager()->GetTexture("Background", mBackground))
+	if(!Managers::GetResourceManager()->GetTexture("Background", mBackground))
 		return false;
-	if(!managers->GetResourceManager()->GetTexture("menuSelector", m_selector))
+	if (!Managers::GetResourceManager()->GetTexture("menuSelector", m_selector))
 		return false;
 	MakeTTFTexture("Difficulty Select",m_title);
 	MakeTTFTexture("I like things super easy", m_descriptionEasy);
@@ -18,17 +18,17 @@ bool DifficultySelectScreen::Init()
 	MakeTTFTexture("I am a sado masochist", m_descriptionHard);
 
 	m_easy = new Button();
-	if (!m_easy->Init("EasyButton", managers->GetResourceManager()))
+	if (!m_easy->Init("EasyButton"))
 		return false;
 	m_med = new Button();
-	if (!m_med->Init("MediumButton", managers->GetResourceManager()))
+	if (!m_med->Init("MediumButton"))
 		return false;
 	m_hard = new Button();
-	if (!m_hard->Init("HardButton", managers->GetResourceManager()))
+	if (!m_hard->Init("HardButton"))
 		return false;
 
-	int WIDTH = managers->GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = managers->GetGraphicsManager()->GetScreenHeight();
+	int WIDTH = Managers::GetGraphicsManager()->GetScreenWidth();
+	int HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
 
 	m_easy->SetPosition((WIDTH - m_easy->GetWidth()) / 2, 100);
 	m_med->SetPosition((WIDTH - m_med->GetWidth()) / 2, 200);
@@ -116,7 +116,7 @@ void DifficultySelectScreen::Update()
 	}
 	else if (im->GetEnter() || im->GetAttack() || im->GetA())
 	{
-		GlobalsManager* g = managers->GetGlobalsManager();
+		GlobalsManager* g = Managers::GetGlobalsManager();
 		if (choice == 1)
 		{
 			g->SetDifficulty(g->EASY);
@@ -129,7 +129,7 @@ void DifficultySelectScreen::Update()
 		{
 			g->SetDifficulty(g->HARD);
 		}
-		nextScreen = new LevelSelectScreen(managers);
+		nextScreen = new LevelSelectScreen();
 	}
 	else if (im->GetQuit())
 	{
@@ -137,7 +137,7 @@ void DifficultySelectScreen::Update()
 	}
 	else if (im->GetEscape() || im->GetX())
 	{
-		nextScreen = new MainMenuScreen(managers);
+		nextScreen = new MainMenuScreen();
 	}
 	if (choice == 1)
 	{

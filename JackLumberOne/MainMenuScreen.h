@@ -6,7 +6,7 @@ class MainMenuScreen :
 	public Screen
 {
 public:
-	MainMenuScreen(Managers* managerRef);
+	MainMenuScreen();
 	~MainMenuScreen();
 
 	void Update();

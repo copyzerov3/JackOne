@@ -4,7 +4,7 @@ class SettingsScreen :
 	public Screen
 {
 public:
-	SettingsScreen(Managers* managerRef);
+	SettingsScreen();
 	~SettingsScreen();
 
 	void Update();

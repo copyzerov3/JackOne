@@ -9,9 +9,8 @@ Enemy::~Enemy()
 {
 }
 
-bool Enemy::Init(Managers* manager, Texture* image, int x, int y, int contactDamage, int speed, int health)
+bool Enemy::Init(Texture* image, int x, int y, int contactDamage, int speed, int health)
 {
-	m_managers = manager;
 	m_image = image;
 	m_x = x;
 	m_y = y;

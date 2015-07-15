@@ -5,7 +5,7 @@
 class MissionBriefingScreen:public Screen
 {
 public:
-	MissionBriefingScreen(Managers* managersRef,GlobalsManager::AREAS area,int level);
+	MissionBriefingScreen(GlobalsManager::AREAS area,int level);
 	~MissionBriefingScreen();
 
 	void Update();

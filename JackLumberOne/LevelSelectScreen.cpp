@@ -1,10 +1,10 @@
 #include "LevelSelectScreen.h"
 #include "DifficultySelectScreen.h"
 #include "MissionBriefingScreen.h"
-LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
+LevelSelectScreen::LevelSelectScreen() 
 {
 	choice = 1;
-	if (!managers->GetGlobalsManager()->IsSpaceUnlocked())
+	if (!Managers::GetGlobalsManager()->IsSpaceUnlocked())
 		max = 5;
 	else
 		max = 6;
@@ -12,7 +12,7 @@ LevelSelectScreen::LevelSelectScreen(Managers* managerRef) :Screen(managerRef)
 }
 bool LevelSelectScreen::Init()
 {
-	ResourceManager* r = managers->GetResourceManager();
+	ResourceManager* r = Managers::GetResourceManager();
 	if(!r->GetTexture("ForestLevelOneBackground", m_forestLevelOne))
 		return false;
 	if (!r->GetTexture("ForestLevelTwoBackground", m_forestLevelTwo))
@@ -153,7 +153,7 @@ void LevelSelectScreen::Draw()
 }
 void LevelSelectScreen::CheckChoice()
 {
-	GlobalsManager* g = managers->GetGlobalsManager();
+	GlobalsManager* g = Managers::GetGlobalsManager();
 	GlobalsManager::AREAS area;
 	switch (choice)
 	{
@@ -213,7 +213,7 @@ void LevelSelectScreen::CheckChoice()
 		}
 		break;
 	}
-	nextScreen = new MissionBriefingScreen(managers, area, choiceLevel);
+	nextScreen = new MissionBriefingScreen(area, choiceLevel);
 }
 void LevelSelectScreen::Update()
 {
@@ -228,7 +228,7 @@ void LevelSelectScreen::Update()
 	}
 	if (im->GetEscape() || im->GetX())
 	{
-		nextScreen = new DifficultySelectScreen(managers);
+		nextScreen = new DifficultySelectScreen();
 	}
 	if (im->GetDown())
 	{

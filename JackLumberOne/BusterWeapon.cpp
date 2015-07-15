@@ -1,9 +1,9 @@
 #include "BusterWeapon.h"
 #include "BusterBullet.h"
-
-BusterWeapon::BusterWeapon(Managers* manager)
+#include "Managers.h"
+BusterWeapon::BusterWeapon()
 {
-	switch (manager->GetGlobalsManager()->GetBusterLevel())
+	switch (Managers::GetGlobalsManager()->GetBusterLevel())
 	{
 	case 1:
 		m_fireRate = 1000;
@@ -25,10 +25,10 @@ BusterWeapon::~BusterWeapon()
 {
 }
 
-void BusterWeapon::Fire(Managers* manager,int x, int y)
+void BusterWeapon::Fire(int x, int y)
 {
 	BusterBullet* bullet = new BusterBullet();
-	bullet->Init(manager, x, y);
-	manager->GetBulletManager()->Add(bullet);
+	bullet->Init(x, y);
+	Managers::GetBulletManager()->Add(bullet);
 	m_timer.start();
 }
