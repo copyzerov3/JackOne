@@ -10,21 +10,21 @@ BulletManager::~BulletManager()
 {
 }
 
-void BulletManager::Draw(SDL_Renderer *r,int width,int height)
+void BulletManager::Draw()
 {
 	for (int i = 0; i < m_bullets.GetSize(); i++)
 	{
-		m_bullets[i]->Draw(r, width, height);
+		m_bullets[i]->Draw();
 	}
 }
 
-void BulletManager::Update(int width, int height)
+void BulletManager::Update()
 {
 	Bullet* currentBullet;
 	for (int i = m_bullets.GetSize()-1; i !=-1; i--)
 	{
 		currentBullet = m_bullets[i];
-		currentBullet->Update(width, height);
+		currentBullet->Update();
 		if (currentBullet->IsDead())
 		{
 			m_bullets.removePointer(i);

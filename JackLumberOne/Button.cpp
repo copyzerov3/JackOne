@@ -24,14 +24,14 @@ Button::~Button()
 
 }
 
-void Button::Render( SDL_Renderer* renderer,int x, int y)
+void Button::Render(int x, int y)
 {
 	if (m_selected)
-		m_pressed->Render(renderer, x, y);
+		m_pressed->Render( x, y);
 	else
-		m_regular->Render(renderer, x, y);
+		m_regular->Render( x, y);
 }
-void Button::Render(SDL_Renderer* renderer)
+void Button::Render()
 {
-	Render(renderer, m_x, m_y);
+	Render( m_x, m_y);
 }

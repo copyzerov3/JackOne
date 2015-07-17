@@ -1,13 +1,13 @@
 #pragma once
-#include "Texture.h"
+#include "Managers.h"
 class Bullet
 {
 public:
 	Bullet();
 	~Bullet();
 	bool Init(int x, int y);
-	void Update(int width, int height);
-	void Draw(SDL_Renderer* r,int width, int height);
+	virtual void Update() = 0;
+	void Draw();
 	bool IsDead(){ return m_isDead; }
 	int GetWidth()
 	{
@@ -17,12 +17,11 @@ public:
 	{
 		return m_image->GetHeight();
 	}
-private:
+protected:
 	Texture* m_image;
 	int m_speed,m_damage,m_x,m_y;
-	bool m_isDead;
-protected:
-		void Init(Texture* image, int speed, int damage, int x, int y);
+	bool m_isDead,m_isEnemy;
+	void Init(Texture* image, int speed, int damage, int x, int y,bool isEnemy = false);
 
 };
 

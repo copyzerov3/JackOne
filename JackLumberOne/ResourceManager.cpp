@@ -37,7 +37,7 @@ bool ResourceManager::Init()
 		name = line;
 		line = "Assets/Images/Backgrounds/" + scalePath + line + ".png";
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(),name))
+		if (!image->LoadFromFile(line,name))
 		{
 			return false;
 		}
@@ -53,7 +53,7 @@ bool ResourceManager::Init()
 		name = line;
 		line = "Assets/Images/Sprites/Bosses/" + scalePath + line + ".png";
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
+		if (!image->LoadFromFile(line, name))
 		{
 			return false;
 		}
@@ -72,7 +72,7 @@ bool ResourceManager::Init()
 		name = line;
 		line = "Assets/Images/Buttons/" + scalePath + line +".png";
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
+		if (!image->LoadFromFile(line, name))
 		{
 			return false;
 		}
@@ -90,7 +90,7 @@ bool ResourceManager::Init()
 		line = "Assets/Images/Sprites/Enemies/" + scalePath + line + ".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
+		if (!image->LoadFromFile(line, name))
 		{
 			return false;
 		}
@@ -106,7 +106,7 @@ bool ResourceManager::Init()
 		line = "Assets/Images/GUI/" + scalePath + line +".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
+		if (!image->LoadFromFile(line, name))
 		{
 			return false;
 		}
@@ -122,7 +122,7 @@ bool ResourceManager::Init()
 		line = "Assets/Images/Sprites/Player/" + scalePath + line + ".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
+		if (!image->LoadFromFile(line, name))
 		{
 			return false;
 		}
@@ -138,7 +138,7 @@ bool ResourceManager::Init()
 		line = "Assets/Images/Projectiles/" + scalePath + line + ".png";
 		//printf("%s", line);
 		image = new Texture();
-		if (!image->LoadFromFile(line, graphicsRef->GetRenderer(), name))
+		if (!image->LoadFromFile(line, name))
 		{
 			return false;
 		}

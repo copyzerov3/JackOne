@@ -43,6 +43,14 @@ bool GameScreen::Init()
 	{
 		return false;
 	}
+
+	m_enemy = new SoliderEnemy();
+	if (!m_enemy->Init(Managers::GetGraphicsManager()->GetScreenWidth() + 400, 300))
+	{
+		return false;
+	}
+
+
 	timer.start();
 	return true;
 }
@@ -52,15 +60,17 @@ void GameScreen::Draw()
 	int WIDTH = Managers::GetGraphicsManager()->GetScreenWidth();
 	int HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
 
-	m_background->Render(r, 0, 0);
-	m_player->Draw(r);
-	Managers::GetBulletManager()->Draw(r, WIDTH, HEIGHT);
+	m_background->Render(0, 0);
+	m_player->Draw();
+	m_enemy->Draw();
+	Managers::GetBulletManager()->Draw();
 }
 
 void GameScreen::Update()
 {
-	m_player->Update(WIDTH,HEIGHT);
-	Managers::GetBulletManager()->Update(WIDTH, HEIGHT);
+	m_player->Update();
+	m_enemy->Update(m_player);
+	Managers::GetBulletManager()->Update();
 
 	if (timer.isStarted())
 	{
@@ -73,5 +83,12 @@ void GameScreen::Update()
 	if (im->GetQuit())
 	{
 		mLeave = true;
+	}
+	if (im->GetEnter())
+	{
+		delete m_enemy;
+		m_enemy = nullptr;
+		m_enemy = new SoliderEnemy();
+		m_enemy->Init(Managers::GetGraphicsManager()->GetScreenWidth() + 400, 300);
 	}
 }

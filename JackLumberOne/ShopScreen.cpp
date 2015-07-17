@@ -27,8 +27,8 @@ bool ShopScreen::Init()
 
 void ShopScreen::Draw()
 {
-	m_background->Render(r, 0, 0);
-	m_title->Render(r, (WIDTH - m_title->GetWidth())/2, 0);
+	m_background->Render( 0, 0);
+	m_title->Render( (Managers::GetGraphicsManager()->GetScreenWidth() - m_title->GetWidth())/2, 0);
 }
 
 void ShopScreen::Update()

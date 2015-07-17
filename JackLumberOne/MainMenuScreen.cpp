@@ -33,11 +33,11 @@ bool MainMenuScreen::Init()
 	timer.start();
 	m_play->SetIsSelected(true);
 
-	int mid = (HEIGHT + m_title->GetHeight() - m_settings->GetHeight()) / 2;
+	int mid = (Managers::GetGraphicsManager()->GetScreenHeight() + m_title->GetHeight() - m_settings->GetHeight()) / 2;
 
-	m_play->SetPosition((WIDTH - m_play->GetWidth()) / 2, (mid) / 2);
-	m_settings->SetPosition((WIDTH - m_settings->GetWidth()) / 2, mid);
-	m_exit->SetPosition((WIDTH - m_exit->GetWidth()) / 2, mid + (mid / 2));
+	m_play->SetPosition((Managers::GetGraphicsManager()->GetScreenWidth() - m_play->GetWidth()) / 2, (mid) / 2);
+	m_settings->SetPosition((Managers::GetGraphicsManager()->GetScreenWidth() - m_settings->GetWidth()) / 2, mid);
+	m_exit->SetPosition((Managers::GetGraphicsManager()->GetScreenWidth() - m_exit->GetWidth()) / 2, mid + (mid / 2));
 
 	return true;
 }
@@ -53,12 +53,12 @@ MainMenuScreen::~MainMenuScreen()
 
 void MainMenuScreen::Draw()
 {
-	mBackground->Render(r, 0, 0);
-	m_play->Render(r);
-	m_settings->Render(r);
-	m_exit->Render(r);
+	mBackground->Render( 0, 0);
+	m_play->Render();
+	m_settings->Render();
+	m_exit->Render();
 	
-	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
+	m_title->Render((Managers::GetGraphicsManager()->GetScreenWidth() - m_title->GetWidth()) / 2, 0);
 	int pos = 0,posX = 0;
 	
 	switch (choice)
@@ -76,7 +76,7 @@ void MainMenuScreen::Draw()
 		posX = m_exit->GetX() - mSelector->GetWidth();
 		break;
 	}
-	mSelector->Render(r,posX , pos);
+	mSelector->Render(posX , pos);
 }
 
 void MainMenuScreen::Update()

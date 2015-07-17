@@ -10,8 +10,8 @@ public:
 	~BulletManager();
 
 	void Add(Bullet* bullet);
-	void Update(int width,int height);
-	void Draw(SDL_Renderer *r,int width,int height);
+	void Update();
+	void Draw();
 private:
 	UnorderedArray<Bullet*> m_bullets;
 };

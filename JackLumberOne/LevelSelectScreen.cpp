@@ -60,13 +60,13 @@ void LevelSelectScreen::DrawForest()
 	switch (choiceLevel)
 	{
 	case 1:
-		m_forestLevelOne->Render(r,0, 0);
+		m_forestLevelOne->Render(0, 0);
 		break;
 	case 2:
-		m_forestLevelTwo->Render(r,0, 0);
+		m_forestLevelTwo->Render(0, 0);
 		break;
 	case 3:
-		m_forestLevelThree->Render(r, 0, 0);
+		m_forestLevelThree->Render( 0, 0);
 		break;
 	}
 }
@@ -75,13 +75,13 @@ void LevelSelectScreen::DrawDesert()
 	switch (choiceLevel)
 	{
 	case 1:
-		m_desertLevelOne->Render(r, 0, 0);
+		m_desertLevelOne->Render( 0, 0);
 		break;
 	case 2:
-		m_desertLevelTwo->Render(r, 0, 0);
+		m_desertLevelTwo->Render( 0, 0);
 		break;
 	case 3:
-		m_desertLevelThree->Render(r, 0, 0);
+		m_desertLevelThree->Render( 0, 0);
 		break;
 	}
 }
@@ -90,13 +90,13 @@ void LevelSelectScreen::DrawCity()
 	switch (choiceLevel)
 	{
 	case 1:
-		m_cityLevelOne->Render(r, 0, 0);
+		m_cityLevelOne->Render( 0, 0);
 		break;
 	case 2:
-		m_cityLevelTwo->Render(r, 0, 0);
+		m_cityLevelTwo->Render( 0, 0);
 		break;
 	case 3:
-		m_cityLevelThree->Render(r, 0, 0);
+		m_cityLevelThree->Render( 0, 0);
 		break;
 	}
 }
@@ -105,13 +105,13 @@ void LevelSelectScreen::DrawSea()
 	switch (choiceLevel)
 	{
 	case 1:
-		m_seaLevelOne->Render(r, 0, 0);
+		m_seaLevelOne->Render( 0, 0);
 		break;
 	case 2:
-		m_seaLevelTwo->Render(r, 0, 0);
+		m_seaLevelTwo->Render( 0, 0);
 		break;
 	case 3:
-		m_seaLevelThree->Render(r, 0, 0);
+		m_seaLevelThree->Render( 0, 0);
 		break;
 	}
 }
@@ -120,13 +120,13 @@ void LevelSelectScreen::DrawSpace()
 	switch (choiceLevel)
 	{
 	case 1:
-		m_spaceLevelOne->Render(r, 0, 0);
+		m_spaceLevelOne->Render( 0, 0);
 		break;
 	case 2:
-		m_spaceLevelTwo->Render(r, 0, 0);
+		m_spaceLevelTwo->Render( 0, 0);
 		break;
 	case 3:
-		m_spaceLevelThree->Render(r, 0, 0);
+		m_spaceLevelThree->Render( 0, 0);
 		break;
 	}
 }

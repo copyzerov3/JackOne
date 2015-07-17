@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "LoadingScreen.h"
 #include "MainMenuScreen.h"
+#include <time.h>
 Game::Game()
 {
 
@@ -30,7 +31,7 @@ bool Game::Init()
 		return false;
 	fpsTimer.start();
 	countedFrames = 0;
-
+	srand(time(NULL));
 	return true;
 }
 bool Game::Leave()

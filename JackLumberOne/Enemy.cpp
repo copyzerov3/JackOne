@@ -9,7 +9,7 @@ Enemy::~Enemy()
 {
 }
 
-bool Enemy::Init(Texture* image, int x, int y, int contactDamage, int speed, int health)
+void Enemy::Init(Texture* image, int x, int y, int contactDamage, int speed, int health)
 {
 	m_image = image;
 	m_x = x;
@@ -17,6 +17,31 @@ bool Enemy::Init(Texture* image, int x, int y, int contactDamage, int speed, int
 	m_contactDamage = contactDamage;
 	m_speed = speed;
 	m_health = health;
+}
+void Enemy::TakeDamage(float damage, bool fromContact)
+{
+	m_health -= damage;
+	if (m_health <= 0)
+	{
+		m_isDead = true;
+	}
+}
+void Enemy::GetAcceleraton(int newX, int newY)
+{
 	
-	return true;
+	if (std::abs(m_x - newX) > std::abs(m_y - newY))
+	{
+		m_accelX = m_speed;
+		m_accelY = std::abs(m_y - newY) / (std::abs(m_x - newX) / m_accelX);
+	}
+	else if (std::abs(m_x - newX) < std::abs(m_y - newY))
+	{
+		m_accelY = m_speed;
+		m_accelX = std::abs(m_x - newX) / (std::abs(m_y - newY) / m_accelY);
+	}
+	else
+	{
+		m_accelX = m_speed;
+		m_accelY = m_speed;
+	}
 }

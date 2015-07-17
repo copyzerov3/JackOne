@@ -58,34 +58,34 @@ DifficultySelectScreen::~DifficultySelectScreen()
 
 void DifficultySelectScreen::Draw()
 {
-	mBackground->Render(r, 0, 0);
-	m_title->Render(r, (WIDTH - m_title->GetWidth()) / 2, 0);
-	m_easy->Render(r);
-	m_med->Render(r);
-	m_hard->Render(r);
+	mBackground->Render( 0, 0);
+	m_title->Render((Managers::GetGraphicsManager()->GetScreenWidth() - m_title->GetWidth()) / 2, 0);
+	m_easy->Render();
+	m_med->Render();
+	m_hard->Render();
 
 	int posX = 0, posY = 0;
 
 	switch (choice)
 	{
 	case 1:
-		m_descriptionEasy->Render(r, (WIDTH - m_descriptionEasy->GetWidth()) / 2, HEIGHT - m_descriptionEasy->GetHeight());
+		m_descriptionEasy->Render((Managers::GetGraphicsManager()->GetScreenWidth() - m_descriptionEasy->GetWidth()) / 2, Managers::GetGraphicsManager()->GetScreenHeight() - m_descriptionEasy->GetHeight());
 		posY = m_easy->GetY() + ((unsigned int(m_easy->GetHeight() - m_selector->GetHeight())) / 2);
 		posX = m_easy->GetX() - m_selector->GetWidth();
 		break;
 	case 2:
-		m_descriptionMed->Render(r, (WIDTH - m_descriptionMed->GetWidth()) / 2, HEIGHT - m_descriptionMed->GetHeight());
+		m_descriptionMed->Render((Managers::GetGraphicsManager()->GetScreenWidth() - m_descriptionMed->GetWidth()) / 2, Managers::GetGraphicsManager()->GetScreenHeight() - m_descriptionMed->GetHeight());
 		posY = m_med->GetY() + ((unsigned int(m_med->GetHeight() - m_selector->GetHeight())) / 2);
 		posX = m_med->GetX() - m_selector->GetWidth();
 		break;
 	case 3:
-		m_descriptionHard->Render(r, (WIDTH - m_descriptionHard->GetWidth()) / 2, HEIGHT - m_descriptionHard->GetHeight());
+		m_descriptionHard->Render((Managers::GetGraphicsManager()->GetScreenWidth() - m_descriptionHard->GetWidth()) / 2, Managers::GetGraphicsManager()->GetScreenHeight() - m_descriptionHard->GetHeight());
 		posY = m_hard->GetY() + ((unsigned int(m_hard->GetHeight() - m_selector->GetHeight())) / 2);
 		posX = m_hard->GetX() - m_selector->GetWidth();
 		break;
 	}
 
-	m_selector->Render(r, posX,posY);
+	m_selector->Render(posX,posY);
 }
 void DifficultySelectScreen::Update()
 {

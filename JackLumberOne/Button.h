@@ -6,8 +6,10 @@ public:
 	Button();
 	~Button();
 	bool Init(std::string name, bool needPressed = true);
-	void Render(SDL_Renderer* renderer);
-	void Render(SDL_Renderer*, int x, int y);
+	/*Draw Button at the buttons private x and y positions*/
+	void Render();
+	/*Draw Button at the cordinates given through parameters*/
+	void Render( int x, int y);
 	int GetWidth()
 	{
 		return m_regular->GetWidth();

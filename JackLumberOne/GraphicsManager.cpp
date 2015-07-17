@@ -84,7 +84,7 @@ bool GraphicsManager::Init()
 			else
 			{
 				SDL_SetRenderDrawColor(m_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-				m_screenTexture.CreateBlank(m_renderer, 1920, 1080, SDL_TEXTUREACCESS_TARGET);
+				m_screenTexture.CreateBlank( 1920, 1080, SDL_TEXTUREACCESS_TARGET);
 				int imgFlags = IMG_INIT_PNG;
 				if (!(IMG_Init(imgFlags) & imgFlags))
 				{

@@ -8,8 +8,8 @@ public:
 	Player();
 	~Player();
 	bool Init();
-	void Draw(SDL_Renderer* r);
-	void Update(int WIDTH,int HEIGHT);
+	void Draw();
+	void Update();
 	int GetX()
 	{
 		return m_x;

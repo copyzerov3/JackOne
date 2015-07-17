@@ -34,8 +34,8 @@ bool MissionBriefingScreen::Init()
 	if (!m_play->Init("PlayButton"))
 		return false;
 	m_timer.start();
-	m_play->SetPosition((WIDTH/3)-m_play->GetWidth()/2, HEIGHT - m_play->GetHeight() - (50 * scaleMode));
-	m_shop->SetPosition((WIDTH/3)*2 - m_shop->GetWidth()/2, HEIGHT - m_shop->GetHeight() - (50 * scaleMode));
+	m_play->SetPosition((WIDTH/3)-m_play->GetWidth()/2, HEIGHT - m_play->GetHeight() - (50 * Managers::GetGraphicsManager()->GetScale()));
+	m_shop->SetPosition((WIDTH / 3) * 2 - m_shop->GetWidth() / 2, HEIGHT - m_shop->GetHeight() - (50 * Managers::GetGraphicsManager()->GetScale()));
 	m_play->SetIsSelected(true);
 	return true;
 
@@ -43,16 +43,16 @@ bool MissionBriefingScreen::Init()
 
 void MissionBriefingScreen::Draw()
 {
-	m_background->Render(r, 0, 0);
-	m_play->Render(r);
-	m_shop->Render(r);
+	m_background->Render( 0, 0);
+	m_play->Render();
+	m_shop->Render();
 	if (choice == 1)
 	{
-		m_selector->Render(r, m_play->GetX() - m_selector->GetWidth() - (5*scaleMode), m_play->GetY() + ((unsigned int(m_play->GetHeight() - m_selector->GetHeight())) / 2));
+		m_selector->Render( m_play->GetX() - m_selector->GetWidth() - (5 * Managers::GetGraphicsManager()->GetScale()), m_play->GetY() + ((unsigned int(m_play->GetHeight() - m_selector->GetHeight())) / 2));
 	}
 	else if (choice == 2)
 	{
-		m_selector->Render(r, m_shop->GetX() - m_selector->GetWidth() - (5 * scaleMode), m_shop->GetY() + ((unsigned int(m_play->GetHeight() - m_selector->GetHeight())) / 2));
+		m_selector->Render( m_shop->GetX() - m_selector->GetWidth() - (5 * Managers::GetGraphicsManager()->GetScale()), m_shop->GetY() + ((unsigned int(m_play->GetHeight() - m_selector->GetHeight())) / 2));
 	}
 }
 

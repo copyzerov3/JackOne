@@ -20,11 +20,11 @@ bool Player::Init()
 		return false;
 	return true;
 }
-void Player::Draw(SDL_Renderer* r)
+void Player::Draw()
 {
-	m_player->Render(r, m_x, m_y);
+	m_player->Render( m_x, m_y);
 }
-void Player::Update(int WIDTH,int HEIGHT)
+void Player::Update()
 {
 	InputManager* im = Managers::GetInputManager();
 	if (im->GetUp() && !im->GetDown())
@@ -37,8 +37,8 @@ void Player::Update(int WIDTH,int HEIGHT)
 	else if (im->GetDown() && !im->GetUp())
 	{
 		m_y+=m_speed;
-		if (m_y + GetHeight() > HEIGHT)
-			m_y = HEIGHT - GetHeight();
+		if (m_y + GetHeight() > Managers::GetGraphicsManager()->GetScreenHeight())
+			m_y = Managers::GetGraphicsManager()->GetScreenHeight() - GetHeight();
 	}
 	if (im->GetLeft() && !im->GetRight())
 	{
@@ -50,8 +50,8 @@ void Player::Update(int WIDTH,int HEIGHT)
 	else if (im->GetRight() && !im->GetLeft())
 	{
 		m_x+=m_speed;
-		if (m_x + GetWidth() > WIDTH)
-			m_x = WIDTH - GetWidth();
+		if (m_x + GetWidth() > Managers::GetGraphicsManager()->GetScreenWidth())
+			m_x = Managers::GetGraphicsManager()->GetScreenWidth() - GetWidth();
 	}
 	if (im->GetAttack())
 	{

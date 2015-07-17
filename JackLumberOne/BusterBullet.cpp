@@ -47,3 +47,9 @@ bool BusterBullet::Init(int x,int y)
 	Bullet::Init(image, speed, damage, x, y);
 	return true;
 }
+void BusterBullet::Update()
+{
+	m_x += m_speed;
+	if (m_x >= Managers::GetGraphicsManager()->GetScreenWidth())
+		m_isDead = true;
+}

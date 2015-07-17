@@ -8,5 +8,6 @@ public:
 	~BusterBullet();
 
 	bool Init(int x,int y);
+	void Update();
 };
 

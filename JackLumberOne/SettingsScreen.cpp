@@ -20,9 +20,9 @@ SettingsScreen::~SettingsScreen()
 void SettingsScreen::Draw()
 {
 	if (m_background != nullptr)
-		m_background->Render(r, 0, 0);
+		m_background->Render( 0, 0);
 	if (m_title != nullptr)
-		m_title->Render(r, (Managers::GetGraphicsManager()->GetScreenWidth() - m_title->GetWidth()) / 2, 0);
+		m_title->Render( (Managers::GetGraphicsManager()->GetScreenWidth() - m_title->GetWidth()) / 2, 0);
 }
 
 void SettingsScreen::Update()
