@@ -21,11 +21,11 @@ bool SoliderEnemy::Init(int x, int y)
 	}
 	//srand(time(NULL));
 	m_shootRate = (std::rand() %1000) + 1500;
-	printf("Hey the time generated is %i k thanks \n", m_shootRate);
+	//printf("Hey the time generated is %i k thanks \n", m_shootRate);
 
 	m_targetX = (rand() % Managers::GetGraphicsManager()->GetScreenWidth() - image->GetWidth()) + image->GetWidth() * 2;
 	m_targetY = rand() % (Managers::GetGraphicsManager()->GetScreenHeight() - image->GetHeight());
-	printf("Hey the positions generated are X target = %i and Y target = %i\n", m_targetX, m_targetY);
+	//printf("Hey the positions generated are X target = %i and Y target = %i\n", m_targetX, m_targetY);
 	
 
 	m_shoot.start();
