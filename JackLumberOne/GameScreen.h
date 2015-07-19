@@ -2,7 +2,7 @@
 #include "Screen.h"
 #include "Timer.h"
 #include "Player.h"
-#include "SuicideBirdEnemy.h"
+#include "ShieldEnemy.h"
 class GameScreen :
 	public Screen
 {
@@ -21,6 +21,6 @@ private:
 	Texture* m_background;
 	Timer timer;
 	Player *m_player;
-	SuicideBirdEnemy *m_enemy;
+	ShieldEnemy *m_enemy;
 };
 

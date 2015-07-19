@@ -175,7 +175,10 @@ bool ResourceManager::GetTexture(std::string title,Texture* &container)
 				{
 					stringHash++;
 				}
-				return true;
+				else
+				{
+					return true;
+				}
 			}
 			
 		}

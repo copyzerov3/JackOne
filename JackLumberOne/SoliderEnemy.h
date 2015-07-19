@@ -10,6 +10,7 @@ public:
 	bool Init(int x, int y);
 	void Update(Player* playerRef);
 	void Draw();
+	void TakeDamage(float damage, bool fromContact);
 private:
 	
 	enum STATE

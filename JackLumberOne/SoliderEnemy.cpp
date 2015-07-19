@@ -1,9 +1,8 @@
 #include "SoliderEnemy.h"
 #include "SoliderEnemyBullet.h"
 #include <time.h>
-SoliderEnemy::SoliderEnemy()
+SoliderEnemy::SoliderEnemy() :m_state(STATE::FINDING), m_offset(0.0f), m_shootRate(0.0f), m_targetX(0), m_targetY(0)
 {
-	m_state = STATE::FINDING;
 }
 
 
@@ -125,4 +124,12 @@ void SoliderEnemy::Update(Player* playerRef)
 void SoliderEnemy::Draw()
 {
 	m_image->Render( m_x, (m_y+m_offset));
+}
+void SoliderEnemy::TakeDamage(float damage, bool fromContact)
+{
+	m_health -= damage;
+	if (m_health <= 0)
+	{
+		m_isDead = true;
+	}
 }

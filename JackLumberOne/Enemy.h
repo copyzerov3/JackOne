@@ -10,6 +10,7 @@ public:
 	virtual bool Init(int x, int y) = 0;
 	virtual void Update(Player* playerRef) = 0;
 	virtual void Draw()=0;
+	virtual void TakeDamage(float damage, bool fromContact) = 0;
 	/*Getters for the base variables in the class*/
 	int GetX(){return int(m_x);}
 	int GetY(){return int(m_y);}
@@ -20,7 +21,7 @@ public:
 	bool IsDead(){ return m_isDead; }
 	int GetContactDamage(){ return m_contactDamage; }
 
-	void TakeDamage(float damage, bool fromContact);
+	
 
 protected:
 	//This function is for the classes derived from this one to pass in all the values needed

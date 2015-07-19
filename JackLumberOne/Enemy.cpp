@@ -18,14 +18,6 @@ void Enemy::Init(Texture* image, int x, int y, int contactDamage, int speed, int
 	m_speed = speed;
 	m_health = health;
 }
-void Enemy::TakeDamage(float damage, bool fromContact)
-{
-	m_health -= damage;
-	if (m_health <= 0)
-	{
-		m_isDead = true;
-	}
-}
 void Enemy::GetAcceleraton(int newX, int newY)
 {
 	

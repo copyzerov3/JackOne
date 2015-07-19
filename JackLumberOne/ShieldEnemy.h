@@ -1,20 +1,22 @@
 #pragma once
 #include "Enemy.h"
-class SuicideBirdEnemy :
+class ShieldEnemy :
 	public Enemy
 {
 public:
-	SuicideBirdEnemy();
-	~SuicideBirdEnemy();
+	ShieldEnemy();
+	~ShieldEnemy();
 	bool Init(int x, int y);
 	void Update(Player* playerRef);
-	void TakeDamage(float damage, bool fromContact);
 	void Draw();
+	void TakeDamage(float damage, bool fromContact);
 private:
 	enum STATE{
-		TARGETING,ATTACKING
+		FINDING,FOUND
 	};
+
 	STATE m_state;
 	float m_offset;
+	int m_targetX, m_targetY;
 };
 

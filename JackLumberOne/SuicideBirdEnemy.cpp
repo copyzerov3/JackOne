@@ -1,9 +1,8 @@
 #include "SuicideBirdEnemy.h"
 
 
-SuicideBirdEnemy::SuicideBirdEnemy()
+SuicideBirdEnemy::SuicideBirdEnemy() :m_state(STATE::TARGETING), m_offset(0)
 {
-	m_state = STATE::TARGETING;
 }
 
 
@@ -65,6 +64,14 @@ void SuicideBirdEnemy::Update(Player* playerRef)
 	//hitBox.setPosition((int)x, (int)y + (int)yOffset);
 
 	if (m_x + m_image->GetWidth() <= 0)
+	{
+		m_isDead = true;
+	}
+}
+void SuicideBirdEnemy::TakeDamage(float damage, bool fromContact)
+{
+	m_health -= damage;
+	if (m_health <= 0)
 	{
 		m_isDead = true;
 	}

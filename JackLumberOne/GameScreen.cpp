@@ -44,7 +44,7 @@ bool GameScreen::Init()
 		return false;
 	}
 
-	m_enemy = new SuicideBirdEnemy();
+	m_enemy = new ShieldEnemy();
 	if (!m_enemy->Init(Managers::GetGraphicsManager()->GetScreenWidth() + 400, 300))
 	{
 		return false;
@@ -86,9 +86,7 @@ void GameScreen::Update()
 	}
 	if (im->GetEnter())
 	{
-		delete m_enemy;
-		m_enemy = nullptr;
-		m_enemy = new SuicideBirdEnemy();
-		m_enemy->Init(Managers::GetGraphicsManager()->GetScreenWidth() + 400, 300);
+		m_enemy->TakeDamage(0, false);
+		timer.start();
 	}
 }
