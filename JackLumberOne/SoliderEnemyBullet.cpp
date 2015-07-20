@@ -28,4 +28,6 @@ void SoliderEnemyBullet::Update()
 	m_x -= m_speed;
 	if (m_x + m_image->GetWidth() <= 0)
 		m_isDead = true;
+
+	m_hitbox.SetPosition(m_x, m_y);
 }

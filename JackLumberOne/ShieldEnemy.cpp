@@ -99,7 +99,7 @@ void ShieldEnemy::Update(Player* playerRef)
 	{
 		//yOffset = Math.sin(time) * 20;
 	}
-	//hitBox.setPosition((int)x, (int)y + (int)yOffset);
+	m_hitbox.SetPosition((int)m_x, (int)m_y + (int)m_offset);
 }
 void ShieldEnemy::Draw()
 {

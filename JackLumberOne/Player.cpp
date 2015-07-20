@@ -14,10 +14,15 @@ Player::~Player()
 
 bool Player::Init()
 {
-	ResourceManager* r = Managers::GetResourceManager();
 	m_weapon = new BusterWeapon();
-	if (!r->GetTexture("Player", m_player))
+	if (!Managers::GetResourceManager()->GetTexture("Player", m_player))
+	{
+		printf("Could not load the player image\n"); 
 		return false;
+	}
+	
+	m_hitbox.Init(m_x, m_y, m_player->GetWidth(), m_player->GetHeight());
+
 	return true;
 }
 void Player::Draw()
@@ -61,4 +66,6 @@ void Player::Update()
 		}
 			
 	}
+
+	m_hitbox.SetPosition(m_x, m_y);
 }

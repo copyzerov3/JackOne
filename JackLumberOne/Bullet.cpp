@@ -18,6 +18,8 @@ void Bullet::Init(Texture* image, int speed, int damage, int x, int y, bool isEn
 	m_y = y;
 	m_isDead = false;
 	m_isEnemy = isEnemy;
+
+	m_hitbox.Init(m_x, m_y, image->GetWidth(), image->GetHeight());
 }
 void Bullet::Draw()
 {

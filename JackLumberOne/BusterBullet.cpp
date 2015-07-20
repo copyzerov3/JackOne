@@ -52,4 +52,5 @@ void BusterBullet::Update()
 	m_x += m_speed;
 	if (m_x >= Managers::GetGraphicsManager()->GetScreenWidth())
 		m_isDead = true;
+	m_hitbox.SetPosition(m_x, m_y);
 }

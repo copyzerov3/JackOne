@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include "Managers.h"
+#include"BoundingBox.h"
 class Enemy
 {
 public:
@@ -20,7 +21,10 @@ public:
 	bool IsCollidable(){ return m_isCollidable; }
 	bool IsDead(){ return m_isDead; }
 	int GetContactDamage(){ return m_contactDamage; }
-
+	BoundingBox GetBoundingBox()
+	{
+		return m_hitbox;
+	}
 	
 
 protected:
@@ -37,5 +41,6 @@ protected:
 	float m_accelX, m_accelY,m_x,m_y,m_health;
 	int m_contactDamage,m_speed;
 	bool m_isDead,m_isCollidable;
+	BoundingBox m_hitbox;
 };
 

@@ -61,9 +61,10 @@ void GameScreen::Draw()
 	int HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
 
 	m_background->Render(0, 0);
-	m_player->Draw();
-	m_enemy->Draw();
+
 	Managers::GetBulletManager()->Draw();
+	m_enemy->Draw();
+	m_player->Draw();
 }
 
 void GameScreen::Update()

@@ -2,6 +2,7 @@
 
 Enemy::Enemy() :m_isDead(false), m_isCollidable(false)
 {
+
 }
 
 
@@ -17,6 +18,7 @@ void Enemy::Init(Texture* image, int x, int y, int contactDamage, int speed, int
 	m_contactDamage = contactDamage;
 	m_speed = speed;
 	m_health = health;
+	m_hitbox.Init(m_x, m_y, image->GetWidth(), image->GetHeight()); 
 }
 void Enemy::GetAcceleraton(int newX, int newY)
 {

@@ -61,7 +61,7 @@ void SuicideBirdEnemy::Update(Player* playerRef)
 		m_x -= 10;
 	}
 
-	//hitBox.setPosition((int)x, (int)y + (int)yOffset);
+	m_hitbox.SetPosition((int)m_x, (int)m_y + (int)m_offset);
 
 	if (m_x + m_image->GetWidth() <= 0)
 	{

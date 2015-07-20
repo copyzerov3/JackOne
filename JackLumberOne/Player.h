@@ -26,11 +26,16 @@ public:
 	{
 		return m_player->GetHeight();
 	}
+	BoundingBox GetBoundingBox()
+	{
+		return m_hitbox;
+	}
 private:
 	Texture *m_player;
 	int m_x, m_y;
 	Timer m_timer;
 	const int m_speed = 5;
 	Weapon* m_weapon;
+	BoundingBox m_hitbox;
 };
 

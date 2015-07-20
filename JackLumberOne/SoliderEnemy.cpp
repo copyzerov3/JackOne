@@ -119,7 +119,7 @@ void SoliderEnemy::Update(Player* playerRef)
 		}
 	}
 
-	//hitBox.setPosition((int)x, (int)y + (int)yOffset);
+	m_hitbox.SetPosition((int)m_x, (int)m_y + (int)m_offset);
 }
 void SoliderEnemy::Draw()
 {

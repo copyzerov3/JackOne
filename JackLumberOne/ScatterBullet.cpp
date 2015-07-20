@@ -45,5 +45,5 @@ void ScatterBullet::Update()
 		m_isDead = true;
 		return;
 	}
-	//hitBox.setPosition(x, y);
+	m_hitbox.SetPosition(m_x, m_y);
 }
