@@ -1,7 +1,8 @@
 #pragma once
 #include "Texture.h"
-#include "Timer.h"
 #include "Weapon.h"
+#include "BoundingBox.h"
+class Weapon;
 class Player
 {
 public:
@@ -30,12 +31,17 @@ public:
 	{
 		return m_hitbox;
 	}
+	void TakeDamage(float damage);
 private:
 	Texture *m_player;
-	int m_x, m_y;
-	Timer m_timer;
-	const int m_speed = 5;
-	Weapon* m_weapon;
 	BoundingBox m_hitbox;
+	Timer m_timer;
+	Weapon *m_weapon;
+	int m_x, m_y;
+	float m_health,m_maxHealth;
+	const int m_speed = 5;
+	
+	
+	
 };
 

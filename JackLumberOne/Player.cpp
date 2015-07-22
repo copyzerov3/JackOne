@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "BusterWeapon.h"
 #include "Managers.h"
-Player::Player() : m_x(0), m_y(0)
+Player::Player() : m_x(0), m_y(0), m_maxHealth(0), m_health(0)
 {
 
 	
@@ -20,7 +20,31 @@ bool Player::Init()
 		printf("Could not load the player image\n"); 
 		return false;
 	}
-	
+
+	switch (Managers::GetGlobalsManager()->GetDifficulty())
+	{
+	case GlobalsManager::DIFFICULTY::EASY:
+	case GlobalsManager::DIFFICULTY::MEDIUM:
+		m_maxHealth = 100;
+		break;
+	case GlobalsManager::DIFFICULTY::HARD:
+		m_maxHealth = 50;
+		break;
+	}
+
+	switch (Managers::GetGlobalsManager()->GetHealthLevel())
+	{
+	case 2:
+		m_maxHealth += 33;
+		break;
+	case 3:
+		m_maxHealth += 66;
+		break;
+	case 4:
+		m_maxHealth += 100;
+		break;
+	}
+	m_health = m_maxHealth;
 	m_hitbox.Init(m_x, m_y, m_player->GetWidth(), m_player->GetHeight());
 
 	return true;
@@ -68,4 +92,9 @@ void Player::Update()
 	}
 
 	m_hitbox.SetPosition(m_x, m_y);
+}
+
+void Player::TakeDamage(float damage)
+{
+	m_health -= damage;
 }
