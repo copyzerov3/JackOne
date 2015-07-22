@@ -22,6 +22,18 @@ public:
 	{
 		return m_hitbox;
 	}
+	bool IsEnemy()
+	{
+		return m_isEnemy;
+	}
+	void HitSomething()
+	{
+		m_isDead = true;
+	}
+	int GetDamage()
+	{
+		return m_damage;
+	}
 protected:
 	Texture* m_image;
 	int m_speed,m_damage,m_x,m_y;
