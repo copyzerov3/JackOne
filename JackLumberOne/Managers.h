@@ -7,8 +7,9 @@
 #include "ResourceManager.h"
 #include "GlobalsManager.h"
 #include "BulletManager.h"
-class BulletManager;
+#include "AIDirector.h"
 
+class AIDirector;
 class Managers
 {
 public:
@@ -46,6 +47,10 @@ public:
 	{
 		return m_bulletManager;
 	}
+	static AIDirector* GetAIDirector()
+	{
+		return m_aiDirector;
+	}
 	static Managers* GetManagers()
 	{
 		if (m_managers == nullptr)
@@ -60,7 +65,7 @@ private:
 	static ResourceManager* m_resourceManager;
 	static GlobalsManager* m_globalManager;
 	static BulletManager* m_bulletManager;
-	
+	static AIDirector* m_aiDirector;
 	static Managers* m_managers;
 };
 
