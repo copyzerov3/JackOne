@@ -1,3 +1,4 @@
+#pragma once
 #include"Array.h"
 template <class T>
 
