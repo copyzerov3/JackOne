@@ -43,14 +43,7 @@ bool GameScreen::Init()
 	{
 		return false;
 	}
-
-	m_enemy = new ShieldEnemy();
-	if (!m_enemy->Init(Managers::GetGraphicsManager()->GetScreenWidth() + 400, 300))
-	{
-		return false;
-	}
-
-
+	Managers::GetAIDirector()->Reset(m_level, m_area);
 	timer.start();
 	return true;
 }
@@ -61,17 +54,17 @@ void GameScreen::Draw()
 	int HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
 
 	m_background->Render(0, 0);
-
+	
 	Managers::GetBulletManager()->Draw();
-	m_enemy->Draw();
+	Managers::GetAIDirector()->Draw();
 	m_player->Draw();
 }
 
 void GameScreen::Update()
 {
 	m_player->Update();
-	m_enemy->Update(m_player);
-	Managers::GetBulletManager()->Update();
+	Managers::GetAIDirector()->Update(m_player);
+	Managers::GetBulletManager()->Update(m_player);
 
 	if (timer.isStarted())
 	{
@@ -84,10 +77,5 @@ void GameScreen::Update()
 	if (im->GetQuit())
 	{
 		mLeave = true;
-	}
-	if (im->GetEnter())
-	{
-		m_enemy->TakeDamage(0, false);
-		timer.start();
 	}
 }
