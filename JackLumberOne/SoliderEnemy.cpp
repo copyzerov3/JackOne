@@ -124,10 +124,12 @@ void SoliderEnemy::Update(Player* playerRef)
 void SoliderEnemy::Draw()
 {
 	m_image->Render( m_x, (m_y+m_offset));
+	m_healthText->Render(m_x + m_image->GetWidth() - m_healthText->GetWidth(), m_y + m_image->GetHeight() - m_healthText->GetHeight());
 }
 void SoliderEnemy::TakeDamage(float damage, bool fromContact)
 {
 	m_health -= damage;
+	UpdateHealthText();
 	if (m_health <= 0)
 	{
 		m_isDead = true;

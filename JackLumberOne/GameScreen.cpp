@@ -50,9 +50,6 @@ bool GameScreen::Init()
 
 void GameScreen::Draw()
 {
-	int WIDTH = Managers::GetGraphicsManager()->GetScreenWidth();
-	int HEIGHT = Managers::GetGraphicsManager()->GetScreenHeight();
-
 	m_background->Render(0, 0);
 	
 	Managers::GetBulletManager()->Draw();
@@ -63,6 +60,7 @@ void GameScreen::Draw()
 void GameScreen::Update()
 {
 	m_player->Update();
+	
 	Managers::GetAIDirector()->Update(m_player);
 	Managers::GetBulletManager()->Update(m_player);
 

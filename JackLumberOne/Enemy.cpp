@@ -19,6 +19,8 @@ void Enemy::Init(Texture* image, int x, int y, int contactDamage, int speed, int
 	m_speed = speed;
 	m_health = health;
 	m_hitbox.Init(m_x, m_y, image->GetWidth(), image->GetHeight()); 
+	m_healthText = new Texture();
+	UpdateHealthText();
 }
 void Enemy::GetAcceleraton(int newX, int newY)
 {
@@ -38,4 +40,9 @@ void Enemy::GetAcceleraton(int newX, int newY)
 		m_accelX = m_speed;
 		m_accelY = m_speed;
 	}
+}
+void Enemy::UpdateHealthText()
+{
+	SDL_Color color = { 0, 0, 0, 0 };
+	m_healthText->LoadFromRenderedText(std::to_string((int)m_health), color, Managers::GetGraphicsManager()->GetFont());
 }

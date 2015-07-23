@@ -36,8 +36,10 @@ protected:
 		m_y = (float)y;
 	}
 	void GetAcceleraton(int newX, int newY);
+	void UpdateHealthText();
 
-	Texture* m_image;
+
+	Texture* m_image, *m_healthText;
 	float m_accelX, m_accelY,m_x,m_y,m_health;
 	int m_contactDamage,m_speed;
 	bool m_isDead,m_isCollidable;

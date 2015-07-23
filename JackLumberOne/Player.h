@@ -33,7 +33,7 @@ public:
 	}
 	void TakeDamage(float damage);
 private:
-	Texture *m_player;
+	Texture *m_player,*m_healthLabel;
 	BoundingBox m_hitbox;
 	Timer m_timer;
 	Weapon *m_weapon;
@@ -41,6 +41,7 @@ private:
 	float m_health,m_maxHealth;
 	const int m_speed = 5;
 	
+	void UpdateHealthText();
 	
 	
 };

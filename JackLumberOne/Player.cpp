@@ -14,13 +14,16 @@ Player::~Player()
 
 bool Player::Init()
 {
+	//create base weapon for instance.
 	m_weapon = new BusterWeapon();
+	//Get the image for the player if fail return false abort game.
 	if (!Managers::GetResourceManager()->GetTexture("Player", m_player))
 	{
 		printf("Could not load the player image\n"); 
 		return false;
 	}
-
+	
+	//Determine what the base health should be.
 	switch (Managers::GetGlobalsManager()->GetDifficulty())
 	{
 	case GlobalsManager::DIFFICULTY::EASY:
@@ -31,7 +34,7 @@ bool Player::Init()
 		m_maxHealth = 50;
 		break;
 	}
-
+	//add any health bonus if needed.
 	switch (Managers::GetGlobalsManager()->GetHealthLevel())
 	{
 	case 2:
@@ -44,14 +47,19 @@ bool Player::Init()
 		m_maxHealth += 100;
 		break;
 	}
+	//set health to the max health
 	m_health = m_maxHealth;
+	//create and set the label for the health.
+	m_healthLabel = new Texture();
+	UpdateHealthText();
+	//set the hitbox for collision detection
 	m_hitbox.Init(m_x, m_y, m_player->GetWidth(), m_player->GetHeight());
-
 	return true;
 }
 void Player::Draw()
 {
 	m_player->Render( m_x, m_y);
+	m_healthLabel->Render(m_x + m_player->GetWidth() - m_healthLabel->GetWidth(), m_y + m_player->GetHeight() - m_healthLabel->GetHeight());
 }
 void Player::Update()
 {
@@ -97,4 +105,10 @@ void Player::Update()
 void Player::TakeDamage(float damage)
 {
 	m_health -= damage;
+	UpdateHealthText();
+}
+void Player::UpdateHealthText()
+{
+	SDL_Color color = { 0, 0, 0, 0 };
+	m_healthLabel->LoadFromRenderedText(std::to_string((int)m_health), color, Managers::GetGraphicsManager()->GetFont());
 }
