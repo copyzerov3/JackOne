@@ -32,12 +32,13 @@ public:
 		return m_hitbox;
 	}
 	void TakeDamage(float damage);
+	bool CanBeHit(){ return m_hitTimer.getTicks() > m_hitTime; }
 private:
 	Texture *m_player,*m_healthLabel;
 	BoundingBox m_hitbox;
-	Timer m_timer;
+	Timer m_hitTimer;
 	Weapon *m_weapon;
-	int m_x, m_y;
+	int m_x, m_y,m_hitTime;
 	float m_health,m_maxHealth;
 	const int m_speed = 5;
 	

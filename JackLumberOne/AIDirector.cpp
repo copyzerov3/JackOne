@@ -70,13 +70,16 @@ void AIDirector::Update(Player* player)
 		if (!currentEnemy->IsDead())
 		{
 			currentEnemy->Update(player);
-
-			if (BoundingBox::Collided(currentEnemy->GetBoundingBox(), player->GetBoundingBox()))
+			if (player->CanBeHit())
 			{
-				printf("Player collided with enemy\n");
-				currentEnemy->TakeDamage(1.0f, true);
-				player->TakeDamage(currentEnemy->GetContactDamage());
+				if (BoundingBox::Collided(currentEnemy->GetBoundingBox(), player->GetBoundingBox()))
+				{
+					printf("Player collided with enemy\n");
+					currentEnemy->TakeDamage(1.0f, true);
+					player->TakeDamage(currentEnemy->GetContactDamage());
+				}
 			}
+			
 		}
 		if (currentEnemy->IsDead())
 		{

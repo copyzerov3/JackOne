@@ -25,13 +25,17 @@ void BulletManager::Update(Player* player)
 	{
 		currentBullet = m_bullets[i];
 		currentBullet->Update();
+		
 		if (currentBullet->IsEnemy())
 		{
-			if (BoundingBox::Collided(player->GetBoundingBox(), currentBullet->GetBoundingBox()))
+			if (player->CanBeHit())
 			{
-				printf("Enemy Bullet hit player\n");
-				currentBullet->HitSomething();
-				player->TakeDamage(currentBullet->GetDamage());
+				if (BoundingBox::Collided(player->GetBoundingBox(), currentBullet->GetBoundingBox()))
+				{
+					printf("Enemy Bullet hit player\n");
+					currentBullet->HitSomething();
+					player->TakeDamage(currentBullet->GetDamage());
+				}
 			}
 		}
 		else

@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "BusterWeapon.h"
 #include "Managers.h"
-Player::Player() : m_x(0), m_y(0), m_maxHealth(0), m_health(0)
+Player::Player() : m_x(0), m_y(0), m_maxHealth(0), m_health(0), m_hitTime(1000)
 {
 
 	
@@ -54,6 +54,9 @@ bool Player::Init()
 	UpdateHealthText();
 	//set the hitbox for collision detection
 	m_hitbox.Init(m_x, m_y, m_player->GetWidth(), m_player->GetHeight());
+
+	//start the timer for being invincible
+	m_hitTimer.start();
 	return true;
 }
 void Player::Draw()
@@ -106,6 +109,7 @@ void Player::TakeDamage(float damage)
 {
 	m_health -= damage;
 	UpdateHealthText();
+	m_hitTimer.start();
 }
 void Player::UpdateHealthText()
 {
